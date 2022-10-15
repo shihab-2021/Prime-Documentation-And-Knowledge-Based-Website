@@ -37,7 +37,7 @@ const Navbar = () => {
   return (
     <div>
       <div className="absolute z-10 w-full text-white">
-        <nav className="bg-gray-800 px-4 py-3">
+        <nav className=" px-4 py-3">
           <div className="flex justify-between items-center container mx-auto">
             <a href="#">
               <img className="h-fit" src="logo1.png" alt="" />
