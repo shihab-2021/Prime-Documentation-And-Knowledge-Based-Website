@@ -2,6 +2,7 @@ import CommunitiesCard from "../CommunitiesCard/CommunitiesCard";
 import HeroSection from "../Herosection/HeroSection";
 import Navbar from "../../Shared/Navbar/Navbar";
 import Question from "../Question/Question";
+import VideoList from "../VideoList/VideoList";
 
 const Home = () => {
   return (
@@ -9,7 +10,8 @@ const Home = () => {
       <Navbar></Navbar>
       <HeroSection></HeroSection>
       <Question></Question>
-      {/* <CommunitiesCard></CommunitiesCard> */}
+      <CommunitiesCard></CommunitiesCard>
+      <VideoList></VideoList>
     </div>
   );
 };

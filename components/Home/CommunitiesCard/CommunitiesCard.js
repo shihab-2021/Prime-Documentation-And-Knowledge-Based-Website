@@ -1,9 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
-// import Image from "next/image";
 import Link from "next/link";
 import Image from "next/image";
-// import { useDispatch, useSelector } from "react-redux";
+import { BsArrowDownCircle, BsArrowUpCircle } from "react-icons/bs";
 
 const fakeData = [
   {
@@ -80,7 +79,7 @@ const CommunitiesCard = () => {
       <div style={{ maxWidth: "1030px" }} className="container mx-auto">
         <div
           style={{ marginTop: "-110px" }}
-          className="  rounded-xl bg-slate-100 shadow-lg dark:bg-darkBlue  "
+          className="  rounded-xl bg-slate-100 shadow-lg dark:bg-darkBlue"
         >
           {/* grid system for the items here  */}
           <div className="grid grid-cols-1 lg:grid-cols-3">
@@ -110,52 +109,16 @@ const CommunitiesCard = () => {
                 </div>
               </div>
             ))}
-            {/* buuton here  */}
+            {/* button here  */}
             <div className="my-4 text-center">
               <button
-                className="rounded-md p-1 font-bold text-blue-800 duration-300 focus:ring-2 flex"
+                className="rounded-md p-1 font-bold text-blue-800 duration-300 focus:ring-2 flex justify-center items-center px-8"
                 onClick={() => setShowMore(!showMore)}
               >
                 {showMore ? (
-                  //   <ArrowCircleUpIcon className="animate-bounce" />
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="icon icon-tabler icon-tabler-arrow-up-circle animate-bounce"
-                    width="29"
-                    height="29"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="#000000"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <circle cx="12" cy="12" r="9" />
-                    <line x1="12" y1="8" x2="8" y2="12" />
-                    <line x1="12" y1="8" x2="12" y2="16" />
-                    <line x1="16" y1="12" x2="12" y2="8" />
-                  </svg>
+                  <BsArrowUpCircle className="animate-bounce mr-1" />
                 ) : (
-                  //   <ArrowCircleDownIcon className="animate-bounce" />
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="icon icon-tabler icon-tabler-arrow-down-circle animate-bounce"
-                    width="29"
-                    height="29"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="#000000"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <circle cx="12" cy="12" r="9" />
-                    <line x1="8" y1="12" x2="12" y2="16" />
-                    <line x1="12" y1="8" x2="12" y2="16" />
-                    <line x1="16" y1="12" x2="12" y2="16" />
-                  </svg>
+                  <BsArrowDownCircle className="animate-bounce mr-1" />
                 )}{" "}
                 More Categories Blogs{" "}
               </button>

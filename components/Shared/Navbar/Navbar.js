@@ -19,7 +19,7 @@ const Navbar = () => {
     if (currentTheme === "dark") {
       return (
         <MdLightMode
-          className="h-7 w-7"
+          className="h-7 w-7 mt-2 pt-1"
           role="button"
           onClick={() => setTheme("light")}
         />
@@ -27,7 +27,7 @@ const Navbar = () => {
     } else {
       return (
         <MdDarkMode
-          className="h-7 w-7"
+          className="h-7 w-7 mt-2 pt-1"
           role="button"
           onClick={() => setTheme("dark")}
         />
