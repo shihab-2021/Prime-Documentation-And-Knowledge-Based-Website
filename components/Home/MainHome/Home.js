@@ -3,6 +3,7 @@ import HeroSection from "../Herosection/HeroSection";
 import Navbar from "../../Shared/Navbar/Navbar";
 import Question from "../Question/Question";
 import VideoList from "../VideoList/VideoList";
+import Footer from "../../Shared/Footer/Footer";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
       <Question></Question>
       <CommunitiesCard></CommunitiesCard>
       <VideoList></VideoList>
+      <Footer></Footer>
     </div>
   );
 };
