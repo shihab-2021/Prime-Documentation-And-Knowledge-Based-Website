@@ -75,10 +75,10 @@ const CommunitiesCard = () => {
   }, [showMore]);
 
   return (
-    <div className="container mx-auto pt-96">
+    <div className="container mx-auto">
       <div style={{ maxWidth: "1030px" }} className="container mx-auto">
         <div
-          style={{ marginTop: "-110px" }}
+          style={{ marginTop: "-115px" }}
           className="  rounded-xl bg-slate-100 shadow-lg dark:bg-darkBlue"
         >
           {/* grid system for the items here  */}
