@@ -3,7 +3,7 @@ import React from 'react';
 
 const HeroSection = () => {
   return (
-    <div className='bg-violet-900'>
+    <div className='bg-blue dark:bg-midnight'>
       <div className='flex'>
       <div className='hidden sm:block' >
         <img src="https://wordpress-theme.spider-themes.net/docy-dark/wp-content/plugins/docy-core/widgets/inc/hero/controls/images/banner_shap4.png" alt="" />

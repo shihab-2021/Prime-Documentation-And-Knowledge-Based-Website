@@ -40,7 +40,7 @@ const Navbar = () => {
         <nav className=" px-4 py-3">
           <div className="flex justify-between items-center container mx-auto">
             <a href="#">
-              <img className="h-fit" src="logo1.png" alt="" />
+              <img className="h-fit" src="logo2.png" alt="" />
             </a>
             <div className="hidden md:flex gap-2">
               <Link href="/">
@@ -48,12 +48,12 @@ const Navbar = () => {
                   Home
                 </a>
               </Link>
-              <Link href="/">
+              <Link href="/ask">
                 <a className="text-white px-5 py-3 rounded-md hover:bg-white/5">
                   Ask
                 </a>
               </Link>
-              <Link href="/">
+              <Link href="/blogs">
                 <a className="text-white px-5 py-3 rounded-md hover:bg-white/5">
                   Blog
                 </a>
