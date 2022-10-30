@@ -5,7 +5,7 @@ const VideoList = () => {
     return (
       <div>
         <div className="bg-slate-100  dark:bg-DarkGray">
-          <div className="container mx-auto py-14">
+          <div className="container px-4 mx-auto py-14">
             <div className=" grid grid-cols-12 gap-6">
               <div className="col-span-12 md:col-span-7">
                 {/* {!videoList && video && setVideoList(video?.video)}
