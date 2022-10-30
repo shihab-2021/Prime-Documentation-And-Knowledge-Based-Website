@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
 import React from 'react';
 import { BsFacebook } from 'react-icons/bs';
@@ -8,7 +9,7 @@ import { AiFillInstagram } from 'react-icons/ai';
 
 const Footer = () => {
     return (
-        <div className='container mx-auto'>
+        <div className='container px-4 mx-auto'>
               
          <footer className='grid grid-cols-1 gap-4 py-16 lg:grid-cols-4 '>
             <div>

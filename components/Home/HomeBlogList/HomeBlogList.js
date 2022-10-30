@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const HomeBlogList = () => {
     return (
-      <div className="container mx-auto">
+      <div className="container px-4 mx-auto">
         <div className="flex flex-col pb-24 text-center md:flex-row md:justify-between">
           <h2 className="  pb-6 md:pb-0">
             <span className="pb-6">Trending Blogs</span>
