@@ -8,6 +8,7 @@ const HeadSection = () => {
           background: "linear-Gradient( 60deg , #10b3d6 0%, #1d2746 100%)",
           padding: "60px 0 0px",
           position: "relative",
+          zIndex: "-1"
         }}
         className="breadcrumb_area overflow-hidden"
       >
