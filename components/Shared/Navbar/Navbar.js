@@ -34,9 +34,36 @@ const Navbar = () => {
       );
     }
   };
+
+  useEffect(() => {
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function () {
+      var currentScrollPos = window.pageYOffset;
+      if (prevScrollpos > currentScrollPos) {
+        document.getElementById("navbar").style.top = "0";
+        document.getElementById("navbar").style.b = "0";
+      } else {
+        document.getElementById("navbar").style.top = "-70px";
+      }
+      prevScrollpos = currentScrollPos;
+    };
+  }, []);
+
+  /* Open the sidenav */
+  function openNav() {
+    document.getElementById("mySidenav").style.width = "100%";
+    document.body.classList.add("stop-scrolling");
+  }
+
+  /* Close/hide the sidenav */
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.body.classList.remove("stop-scrolling");
+  }
+
   return (
-    <div>
-      <div className="absolute z-10 w-full text-white">
+    <div id="navbar" className="fixed w-full">
+      <div className="z-10 w-full text-white">
         <nav className=" px-4 py-3">
           <div className="flex justify-between items-center container px-4 mx-auto">
             <a href="#">
@@ -111,10 +138,11 @@ const Navbar = () => {
               {renderThemeChange()}
             </div>
             <button
-              onClick={() => {
-                let mobileMenu = document.getElementById("mobile-menu");
-                mobileMenu.classList.toggle("hidden");
-              }}
+              // onClick={() => {
+              //   let mobileMenu = document.getElementById("mobile-menu");
+              //   mobileMenu.classList.toggle("hidden");
+              // }}
+              onClick={openNav}
               data-mobile-menu
               className="text-gray-400 py-3 px-2 hover:text-gray-200 block md:hidden"
             >
@@ -137,14 +165,22 @@ const Navbar = () => {
               </svg>
             </button>
           </div>
-          <div className="hidden md:hidden" id="mobile-menu">
+          <div id="mySidenav" className="sidenav">
+            <a href="javascript:void(0)" className="closebtn" onClick={closeNav}>
+              &times;
+            </a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Clients</a>
+            <a href="#">Contact</a>
+          </div>
+          <div className="hidden bg-slate-700 md:hidden" id="mobile-menu">
             <div className="flex flex-col gap-1 py-3">
-              <a
-                href=""
-                className="bg-gray-900 text-white block px-3 py-2 rounded-md font-medium"
-              >
-                Dashboard
-              </a>
+              <Link href="/ask">
+                <a className="text-white px-5 py-3 rounded-md hover:bg-white/5">
+                  Ask
+                </a>
+              </Link>
               <a
                 href=""
                 className="hover:bg-white/5 text-white block px-3 py-2 rounded-md font-medium"

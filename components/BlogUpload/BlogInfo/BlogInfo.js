@@ -1,6 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState } from "react";
 import { BiVideoPlus } from "react-icons/bi";
+import dynamic from "next/dynamic";
+const TextEditor = dynamic(
+  () => import("../../Shared/TextEditor/TextEditor.js"),
+  {
+    ssr: false,
+  }
+);
 
 const BlogInfo = () => {
   const [videoLoading, setVideoLoading] = useState(false);
@@ -8,6 +15,7 @@ const BlogInfo = () => {
   const [image, setImage] = useState("");
   const [video, setVideo] = useState("");
   const [blogData, setBlogData] = useState({});
+  const [value, setValue] = useState("");
 
   const dragOver = (e) => {
     e.preventDefault();
@@ -46,6 +54,7 @@ const BlogInfo = () => {
     console.log(video);
     setVideoLoading(false);
   };
+
   const uploadVideo = async (e) => {
     const files = e.target.files;
     const data = new FormData();
@@ -68,10 +77,72 @@ const BlogInfo = () => {
     setVideoLoading(false);
   };
 
+  const imageFileDrop = async (e) => {
+    e.preventDefault();
+    const files = e.dataTransfer.files;
+    console.log(files);
+
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "ml_default");
+    setImageLoading(true);
+
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/dvszolotz/image/upload",
+      {
+        method: "POST",
+        body: data,
+      }
+    );
+    const file = await res.json();
+
+    const field = "thumbnail";
+    const value = file.secure_url;
+    const newBlogData = { ...blogData };
+    newBlogData[field] = value;
+    setBlogData(newBlogData);
+
+    setImage(file.secure_url);
+    // setImage(files[0])
+    // props.imgLink(file.secure_url);
+    setImageLoading(false);
+  };
+
+  const uploadImage = async (e) => {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "ml_default");
+    setImageLoading(true);
+    console.log(e.target.files);
+
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/dvszolotz/image/upload",
+      {
+        method: "POST",
+        body: data,
+      }
+    );
+    const file = await res.json();
+    // console.log(file.public_id);
+    const field = e.target.name;
+    const value = file.secure_url;
+    const newBlogData = { ...blogData };
+    newBlogData[field] = value;
+    setBlogData(newBlogData);
+    console.log(blogData);
+
+    console.log("something");
+    setImage(file.secure_url);
+    // setImage(files[0])
+    // props.imgLink(file.secure_url);
+    setImageLoading(false);
+  };
+
   return (
     <div>
-      <div className="container px-4 mx-auto">
-        <div className="mt-5 rounded-t-md px-6 bg-DarkGray">
+      <div className="container px-6 mx-auto my-8">
+        <div className="mt-5 rounded-md px-8 bg-DarkGray">
           <div className="py-10">
             <div className="grid grid-cols-12 gap-6 pb-6">
               {/* Blog Title Input */}
@@ -175,7 +246,87 @@ const BlogInfo = () => {
                   </div>
                 </div>
               </div>
+              {/* Thumbnail Upload Handling  */}
+              <div className="col-span-12 md:col-span-6">
+                <div className="rounded-lg border-2 border-dotted border-gray-400 p-3 text-center">
+                  <label>
+                    <div
+                      // className="mt-12 text-center"
+                      onDragOver={dragOver}
+                      onDragEnter={dragEnter}
+                      onDragLeave={dragLeave}
+                      onDrop={imageFileDrop}
+                    >
+                      <div className="">
+                        {imageLoading && (
+                          <div>
+                            <img
+                              className="mx-auto animate-ping"
+                              style={{ height: "70px", width: "70px" }}
+                              src="https://i.ibb.co/gJLdW8G/cloud-upload-regular-240.png"
+                              alt=""
+                            />
+                            <p className="text-xl text-gray-400">Loading ...</p>
+                          </div>
+                        )}
+                        {!imageLoading && (
+                          <div>
+                            <img
+                              className="mx-auto animate-pulse"
+                              style={{ height: "70px", width: "70px" }}
+                              src="https://i.ibb.co/gJLdW8G/cloud-upload-regular-240.png"
+                              alt=""
+                            />
+                            <p className="text-xl text-gray-400">
+                              Drag & Drop your thumbnail image
+                            </p>
+                          </div>
+                        )}
+                        <p className="py-4">
+                          <span className="rounded-lg bg-gray-400 px-3 py-3 font-semibold  text-Docy-Dark dark:text-white">
+                            Upload Thumbnail
+                          </span>
+                        </p>
+                      </div>
+                    </div>
+                    <input
+                      className="hidden"
+                      type="file"
+                      name="thumbnail"
+                      placeholder="upload"
+                      onChange={uploadImage}
+                    />
+                  </label>
+                </div>
+                <small className=" text-red-600 ">Required*</small>
+                {/* <FormHelperText sx={{ color: "red" }}>Required*</FormHelperText> */}
+                <div>
+                  <div className="pt-4">
+                    <div>
+                      {image && (
+                        <img
+                          className="mx-auto"
+                          style={{ maxWidth: "100%" }}
+                          src={image}
+                          alt=""
+                        />
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+            {/* Text editor */}
+            <div className="py-4">
+              <h2 className="mb-2 text-xl text-Docy-Dark dark:text-white">
+                Write your documentation or blog below 🌝
+              </h2>
+              <div className="bg-white text-black">
+                <TextEditor setValue={setValue}></TextEditor>
+              </div>
+            </div>
+            {/* <p>{value}</p>
+            <div dangerouslySetInnerHTML={{ __html: value }} /> */}
           </div>
         </div>
       </div>
