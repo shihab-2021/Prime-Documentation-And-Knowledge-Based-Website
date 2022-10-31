@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { BiVideoPlus } from "react-icons/bi";
 import dynamic from "next/dynamic";
+import Tags from "../../Shared/Tags/Tags";
 const TextEditor = dynamic(
   () => import("../../Shared/TextEditor/TextEditor.js"),
   {
@@ -10,12 +11,26 @@ const TextEditor = dynamic(
 );
 
 const BlogInfo = () => {
+  const [title, setTitle] = useState("");
+  const [categoryName, setCategoryName] = useState("");
+  // const [age, setAge] = useState("");
   const [videoLoading, setVideoLoading] = useState(false);
   const [imageLoading, setImageLoading] = useState(false);
   const [image, setImage] = useState("");
   const [video, setVideo] = useState("");
   const [blogData, setBlogData] = useState({});
   const [value, setValue] = useState("");
+  const [tags, setTags] = useState([]);
+
+  const blogTitle = (e) => {
+    setTitle(e.target.value);
+  };
+
+  const handleChange = (event) => {
+    setCategoryName(event.target.value);
+    // props.category(event.target.value);
+    // console.log(event.target.value);
+  };
 
   const dragOver = (e) => {
     e.preventDefault();
@@ -139,10 +154,47 @@ const BlogInfo = () => {
     setImageLoading(false);
   };
 
+  const allTags = (e) => {
+    setTags(e);
+    // console.log(...e);
+    // console.log(tags);
+  };
+
+  let time = new Date();
+  const date = new Date().toLocaleDateString();
+  const currentTime = time.toLocaleString("en-US", {
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  });
+
+  const handleUpload = () => {
+    if (!title || !image || !categoryName || !value || !tags) {
+      alert(
+        'Title, Thumbnail image, Category selection, Documentation or description writing, Tags giving are required. If any of those missing you can not submit you blog or documentation. Please enter the date if anyone is missing. Thank you.'
+      )
+      return
+    }
+    const uploadData = {
+      title: title,
+      image: image,
+      video: video,
+      category: categoryName,
+      documentation: value,
+      tags: tags,
+      uploadTime: currentTime,
+      uploadDate: date,
+      // blogger: userInfoFromDB,
+      comment: [],
+      reports: [],
+    };
+    console.log(uploadData);
+  }
+
   return (
     <div>
       <div className="container px-6 mx-auto my-8">
-        <div className="mt-5 rounded-md px-8 bg-DarkGray">
+        <div className="mt-5 rounded-md px-8 bg-slate-100 dark:bg-DarkGray">
           <div className="py-10">
             <div className="grid grid-cols-12 gap-6 pb-6">
               {/* Blog Title Input */}
@@ -150,6 +202,7 @@ const BlogInfo = () => {
                 <div>
                   <label htmlFor="title">Title</label>
                   <input
+                    onBlur={blogTitle}
                     required
                     placeholder="Please enter your blog or documentation title"
                     className="h-14 w-full rounded-md border-2 p-3 text-lg"
@@ -160,7 +213,11 @@ const BlogInfo = () => {
               {/* Category Selection Handing */}
               <div className="col-span-12 md:col-span-6">
                 <label htmlFor="category">Category</label>
-                <select className="h-14 w-full cursor-pointer rounded-lg border-2 p-3 text-lg">
+                <select
+                  value={categoryName}
+                  onChange={handleChange}
+                  className="h-14 w-full cursor-pointer rounded-lg border-2 p-3 text-lg"
+                >
                   <option className="hidden">Select Category</option>
                   <option>Creative</option>
                   <option>Inspiration</option>
@@ -327,6 +384,19 @@ const BlogInfo = () => {
             </div>
             {/* <p>{value}</p>
             <div dangerouslySetInnerHTML={{ __html: value }} /> */}
+            {/* Add Tags */}
+            <div>
+              <Tags allTags={allTags}></Tags>
+            </div>
+            <div className="mb-7 rounded-b-md bg-Docy-PaleGrey  dark:bg-Docy-DarkGray">
+              <button
+                onClick={() => handleUpload()}
+                className="mb-6 rounded-lg bg-indigo-500 py-2 px-4 text-lg font-semibold text-white"
+              >
+                {/* <BackupIcon className="animate-bounce" /> */}
+                Submit
+              </button>
+            </div>
           </div>
         </div>
       </div>
