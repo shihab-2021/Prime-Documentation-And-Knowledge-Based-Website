@@ -10,7 +10,7 @@ const TextEditor = dynamic(
   }
 );
 
-const BlogInfo = () => {
+const BlogInfo = (props) => {
   const [title, setTitle] = useState("");
   const [categoryName, setCategoryName] = useState("");
   // const [age, setAge] = useState("");
@@ -171,9 +171,9 @@ const BlogInfo = () => {
   const handleUpload = () => {
     if (!title || !image || !categoryName || !value || !tags) {
       alert(
-        'Title, Thumbnail image, Category selection, Documentation or description writing, Tags giving are required. If any of those missing you can not submit you blog or documentation. Please enter the date if anyone is missing. Thank you.'
-      )
-      return
+        "Title, Thumbnail image, Category selection, Documentation or description writing, Tags giving are required. If any of those missing you can not submit you blog or documentation. Please enter the date if anyone is missing. Thank you."
+      );
+      return;
     }
     const uploadData = {
       title: title,
@@ -188,8 +188,8 @@ const BlogInfo = () => {
       comment: [],
       reports: [],
     };
-    console.log(uploadData);
-  }
+    props.uploadBlog(uploadData);
+  };
 
   return (
     <div>

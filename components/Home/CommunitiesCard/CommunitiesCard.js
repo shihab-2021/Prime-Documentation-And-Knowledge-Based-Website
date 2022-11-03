@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { BsArrowDownCircle, BsArrowUpCircle } from "react-icons/bs";
@@ -54,14 +54,20 @@ const fakeData = [
 
 const CommunitiesCard = () => {
   // react redux hook here
-//   const dispatch = useDispatch();
+  //   const dispatch = useDispatch();
 
   // getting all blogs from redux here
-//   const blogs = useSelector((state) => state?.reducers?.blogs?.blogs);
+  //   const blogs = useSelector((state) => state?.reducers?.blogs?.blogs);
 
   // const categoryWiseBlogs = blogs.filter(
   //   (td) => td?.category === event.target.value
   // )
+  const [blogs, setBlogs] = useState([]);
+  useEffect(() => {
+    fetch("https://incognito-prime.herokuapp.com/blogs")
+      .then((res) => res.json())
+      .then((data) => setBlogs(data));
+  }, []);
 
   const [showMore, setShowMore] = React.useState(false);
   const [data, setData] = React.useState([]);
@@ -99,10 +105,10 @@ const CommunitiesCard = () => {
                       </a>
                     </Link>
                     <p className="text-secondary">
-                      {/* {
+                      {
                         blogs?.filter((td) => td?.category === item?.title)
                           .length
-                      }{" "} */}
+                      }{" "}
                       Posts
                     </p>
                   </span>

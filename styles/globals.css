@@ -70,26 +70,23 @@ a {
   margin-left: 50px;
 }
 .scrollable-place {
-
-height: 3000px;
-
+  height: 3000px;
 }
 
 .stop-scrolling {
-
-height: 100%;
-
-overflow: hidden;
-
+  height: 100%;
+  z-index: -100;
+  overflow: hidden;
 }
 
 /* Navbar css end */
 
 /* Text-editor css start */
-.jodit-workplace, .jodit-wysiwyg{
+.jodit-workplace,
+.jodit-wysiwyg {
   min-height: 250px !important;
 }
-.jodit-status-bar-link{
+.jodit-status-bar-link {
   display: none;
 }
 /* Text-editor css end */
