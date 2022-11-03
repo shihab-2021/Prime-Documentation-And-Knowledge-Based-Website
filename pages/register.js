@@ -1,4 +1,6 @@
 
+import RegisterMain from "../components/Register/RegisterMain";
+
 
 const register = () => {
     return (

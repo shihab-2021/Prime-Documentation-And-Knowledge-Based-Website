@@ -1,4 +1,5 @@
 import React from 'react';
+import LoginMain from '../components/Login/LoginMain';
 
 const login = () => {
     return (
