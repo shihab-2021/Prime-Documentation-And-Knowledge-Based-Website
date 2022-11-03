@@ -1,11 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const login = () => {
-    return (
-        <div>
-            This is login page should be updated
-        </div>
-    );
+  return <div>This yes this is login page should be updated</div>;
 };
 
 export default login;
