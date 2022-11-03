@@ -3,7 +3,7 @@
 const register = () => {
     return (
         <div>
-            This is register page
+            This is register page should be updated
         </div>
     );
 };
