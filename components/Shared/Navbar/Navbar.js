@@ -71,24 +71,24 @@ const Navbar = () => {
             </a>
             <div className="hidden md:flex gap-2">
               <Link href="/">
-                <a className="text-white px-5 py-3 rounded-md hover:bg-white/5">
+                <a className="text-black font-medium text-lg font-serif dark:text-white px-5 py-3 rounded-md hover:bg-white/5">
                   Home
                 </a>
               </Link>
               <Link href="/ask">
-                <a className="text-white px-5 py-3 rounded-md hover:bg-white/5">
+                <a className="text-black font-medium text-lg font-serif dark:text-white px-5 py-3 rounded-md hover:bg-white/5">
                   Ask
                 </a>
               </Link>
               <Link href="/blogs">
-                <a className="text-white px-5 py-3 rounded-md hover:bg-white/5">
+                <a className="text-black font-medium text-lg font-serif dark:text-white px-5 py-3 rounded-md hover:bg-white/5">
                   Blog
                 </a>
               </Link>
               {/* Dropdown button  */}
               <div className="group relative inline-block">
                 <button className="link-item">
-                  <a className="text-white px-5 py-3 rounded-md hover:bg-white/5 inline-flex items-center">
+                  <a className="text-black font-medium text-lg font-serif dark:text-white px-5 py-3 rounded-md hover:bg-white/5 inline-flex items-center">
                     <span className="mr-1 pr-4">Pages</span>
                     <svg
                       className="h-4 w-4 fill-current"
@@ -131,12 +131,13 @@ const Navbar = () => {
                 </ul>
               </div>
               <Link href="/login">
-                <a className="title-btn ml-5 mr-5 rounded-full border-2 border-gray-400 px-4 py-2 text-base font-bold hover:border-white hover:text-white">
+                <a className="title-btn ml-5 mr-5 rounded-full border-2 dark:border-gray-400 border-gray-700 font-serif self-center px-4 py-2 text-base font-bold dark:hover:border-white dark:hover:text-white text-black dark:text-white hover:text-black hover:border-black">
                   Login
                 </a>
               </Link>
               {renderThemeChange()}
             </div>
+            {/* for mobile version  */}
             <button
               // onClick={() => {
               //   let mobileMenu = document.getElementById("mobile-menu");

@@ -1,28 +1,41 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
-
+import { useEffect, useState } from "react";
+import { BiCommentDetail } from "react-icons/bi";
 
 const HomeBlogList = () => {
-    return (
-      <div className="container px-4 mx-auto">
-        <div className="flex flex-col pb-24 text-center md:flex-row md:justify-between">
-          <h2 className="  pb-6 md:pb-0">
-            <span className="pb-6">Trending Blogs</span>
-          </h2>
-          <Link href="/blogUpload">
-            <a>
-              <button className="rounded-md bg-indigo-700 px-10 py-4 font-semibold text-white">
-                {" "}
-                Upload blog now
-                {/* <BackupIcon className="mx-2 animate-bounce" /> */}
-              </button>
-            </a>
-          </Link>{" "}
-        </div>
-        <div className="grid grid-cols-12 gap-8">
-          {/* {trendingBlogs?.map((blog) => ( */}
+  const [blogs, setBlogs] = useState([]);
+  useEffect(() => {
+    fetch("https://incognito-prime.herokuapp.com/blogs")
+      .then((res) => res.json())
+      .then((data) => setBlogs(data));
+  }, []);
+  blogs?.sort(
+    (firstItem, secondItem) =>
+      firstItem?.comment?.length - secondItem?.comment?.length
+  );
+  blogs?.reverse();
+  const trendingBlogs = blogs?.slice(0, 6);
+  return (
+    <div className="container px-4 py-10 my-10 mx-auto">
+      <div className="flex flex-col pb-24 text-center md:flex-row md:justify-between">
+        <h2 className="  pb-6 md:pb-0">
+          <span className="pb-6 text-5xl">Trending Blogs</span>
+        </h2>
+        <Link href="/blogUpload">
+          <a>
+            <button className="rounded-md bg-indigo-700 px-10 py-4 font-semibold text-white">
+              {" "}
+              Upload blog now
+              {/* <BackupIcon className="mx-2 animate-bounce" /> */}
+            </button>
+          </a>
+        </Link>{" "}
+      </div>
+      <div className="grid grid-cols-12 gap-8">
+        {trendingBlogs?.map((blog) => (
           <button
-            //   key={blog?._id}
+            key={blog?._id}
             className="col-span-12 min-h-full w-full rounded text-left font-serif  text-Dark shadow dark:text-white sm:col-span-6 md:col-span-6"
             //   onClick={() => dispatch(ADD_TO_BLOG(blog))}
           >
@@ -35,8 +48,8 @@ const HomeBlogList = () => {
                   <img
                     className="w-full rounded object-cover h-80"
                     // h-96
-                    src="https://source.unsplash.com/random/1600x900"
-                    // src={blog?.image}
+                    // src="https://source.unsplash.com/random/1600x900"
+                    src={blog?.image}
                     alt="blogImage"
                   />
                   <div
@@ -45,10 +58,9 @@ const HomeBlogList = () => {
                   >
                     <h3 className="text-xl text-Docy-Dark dark:text-slate-100">
                       {/* {blog?.title} */}
-                      {/* {blog?.title?.length > 70
+                      {blog?.title?.length > 70
                         ? blog?.title?.slice(0, 70) + "..."
-                        : blog?.title} */}
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Amet, dolores!
+                        : blog?.title}
                     </h3>
                   </div>
                   <div>
@@ -72,14 +84,14 @@ const HomeBlogList = () => {
                           </p>
                           <p>
                             <small className="font-sans text-sm text-Docy-Dark dark:text-white">
-                              {/* {blog?.uploadDate} - {blog?.uploadTime} */} data and time
+                              {blog?.uploadDate} - {blog?.uploadTime}
                             </small>
                           </p>
                         </div>
                       </div>
-                      <div className="float-right self-center text-Docy-Dark dark:text-white">
-                        {/* <ForumOutlinedIcon sx={{ width: 18, height: 18 }} />
-                        {blog?.comment?.length} */} comment
+                      <div className="float-right flex justify-center items-center self-center text-Docy-Dark dark:text-white">
+                        <BiCommentDetail />
+                        <p className="self-center">{blog?.comment?.length}</p>
                       </div>
                     </div>
                   </div>
@@ -87,20 +99,21 @@ const HomeBlogList = () => {
               </a>
             </Link>
           </button>
-          {/* ))} */}
-        </div>
-        <div className="mt-12 flex justify-center">
-          <Link href="/blogs">
-            <a>
-              {/* <SvgButton sx={{ textAlign: "center", color: "#6ab3fb" }}>
+        ))}
+      </div>
+      <div className="mt-12 flex justify-center">
+        <Link href="/blogs">
+          <a>
+            {/* <SvgButton sx={{ textAlign: "center", color: "#6ab3fb" }}>
                 {" "}
                 See All <KeyboardDoubleArrowRightIcon />
-              </SvgButton> */} see all
-            </a>
-          </Link>
-        </div>
+              </SvgButton> */}{" "}
+            see all
+          </a>
+        </Link>
       </div>
-    );
+    </div>
+  );
 };
 
 export default HomeBlogList;

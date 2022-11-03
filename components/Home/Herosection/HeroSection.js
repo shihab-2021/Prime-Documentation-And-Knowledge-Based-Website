@@ -33,7 +33,8 @@ const HeroSection = () => {
               type="search"
               name=""
               id="search"
-              className="w-80 rounded h-10 bg-white text-black md:w-96"
+              className="w-80 rounded-full h-12 bg-white text-black md:w-96 px-5"
+              placeholder='Search'
             />
             {/* <button className="h-10 hover:bg-violet-900">aa</button> */}
           </div>
