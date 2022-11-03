@@ -8,7 +8,7 @@ const RegisterMain = () => {
     <div className="my-24 container mx-auto px-4 grid grid-cols-1 md:grid-cols-2">
       <div className="md:w-1/2 mx-auto p-4 ">
         <div>
-          <img className="w-3/4" src="/Asset/login.svg" alt="" />
+          <img className="w-3/4" src="login.svg" alt="" />
         </div>
       </div>
       <div className="md:w-1/2">
