@@ -42,7 +42,7 @@ const RegisterMain = () => {
                                 </button>
                             </div>
                             <div className='text-center'>
-                                    <p>or Register in with</p>
+                                    <p>Or Register in with</p>
                                     <div className='flex justify-center my-2'>
                                         <div className='mx-1'>
                                         <AiOutlineGoogle />

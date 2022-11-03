@@ -36,7 +36,7 @@ const LoginMain = () => {
                                     </button>
                                 </div>
                                 <div className='text-center'>
-                                    <p>or log in with</p>
+                                    <p>Or log in with</p>
                                     <div className='flex justify-center my-2'>
                                         <div className='mx-1'>
                                         <AiOutlineGoogle />
