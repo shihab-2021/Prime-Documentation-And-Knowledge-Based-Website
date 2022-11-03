@@ -1,12 +1,7 @@
-import React from 'react';
-import LoginMain from '../components/Login/LoginMain';
+import React from "react";
 
 const login = () => {
-    return (
-        <div>
-            <LoginMain></LoginMain>
-        </div>
-    );
+  return <div>This yes this is login page should be updated</div>;
 };
 
 export default login;
