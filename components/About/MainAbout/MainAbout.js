@@ -11,7 +11,7 @@ const MainAbout = () => {
 
       <div className="container px-4 mx-auto sm:grid grid-cols-2 mt-10   ">
         <div className="w-full">
-          <img className="w-11/12" src="about.png" alt="" />
+          <img className="w-11/12" src="./Asset/about.png" alt="" />
         </div>
         <div className="w-96">
           <h2 className="text-3xl">A united world, connected by technology</h2>
@@ -61,7 +61,7 @@ const MainAbout = () => {
         <div className="mx-5 card ">
           <img
             style={{ width: "200px", height: "200px" }}
-            src="sohan.jpeg"
+            src="./Asset/sohan.jpeg"
             alt=""
           />
           <h3 className="font-bold">Tanvir Hasan Sohan</h3>
@@ -70,7 +70,7 @@ const MainAbout = () => {
         <div className="mx-5" style={{ width: "200px", height: "200px" }}>
           <img
             style={{ width: "200px", height: "200px" }}
-            src="shihab.jpeg"
+            src="./Asset/shihab.jpeg"
             alt=""
           />
           <h3 className="font-bold">Shajibul Alam Shihab</h3>
@@ -79,7 +79,7 @@ const MainAbout = () => {
         <div className="mx-5" style={{ width: "200px", height: "200px" }}>
           <img
             style={{ width: "200px", height: "200px" }}
-            src="mishon.jpeg"
+            src="./Asset/mishon.jpeg"
             alt=""
           />
           <h3 className="font-bold">Muhtakim Safat Mishon</h3>
