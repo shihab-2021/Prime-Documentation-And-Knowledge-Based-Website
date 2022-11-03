@@ -5,7 +5,7 @@ import RegisterMain from "../components/Register/RegisterMain";
 const register = () => {
     return (
         <div>
-           <RegisterMain></RegisterMain>
+            This is register page should be updated
         </div>
     );
 };
