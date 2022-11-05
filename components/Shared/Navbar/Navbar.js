@@ -49,21 +49,29 @@ const Navbar = () => {
     };
   }, []);
 
+  const [navOpen, setNavOpen] = useState(false);
+
   /* Open the sidenav */
   function openNav() {
     document.getElementById("mySidenav").style.width = "100%";
+    // document.getElementById("closeBtn").style.display = "block";
+    // document.getElementById("openBtn").style.display = "none";
+    setNavOpen(true);
     document.body.classList.add("stop-scrolling");
   }
 
   /* Close/hide the sidenav */
   function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
+    // document.getElementById("closeBtn").style.display = "none";
+    // document.getElementById("openBtn").style.display = "block";
+    setNavOpen(false);
     document.body.classList.remove("stop-scrolling");
   }
 
   return (
-    <div id="navbar" className="fixed w-full">
-      <div className="z-10 w-full text-white">
+    <div id="navbar" className="z-10 fixed w-full">
+      <div className="w-full text-white">
         <nav className=" px-4 py-3">
           <div className="flex justify-between items-center container px-4 mx-auto">
             <a href="#">
@@ -135,72 +143,69 @@ const Navbar = () => {
                   Login
                 </a>
               </Link>
-              {renderThemeChange()}
+              <div className=" text-black dark:text-white">{renderThemeChange()}</div>
             </div>
             {/* for mobile version  */}
-            <button
-              // onClick={() => {
-              //   let mobileMenu = document.getElementById("mobile-menu");
-              //   mobileMenu.classList.toggle("hidden");
-              // }}
-              onClick={openNav}
-              data-mobile-menu
-              className="text-gray-400 py-3 px-2 hover:text-gray-200 block md:hidden"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="icon icon-tabler icon-tabler-menu-2"
-                width="44"
-                height="44"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="#2c3e50"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+            {!navOpen && (
+              <button
+                id="openBtn"
+                // onClick={() => {
+                //   let mobileMenu = document.getElementById("mobile-menu");
+                //   mobileMenu.classList.toggle("hidden");
+                // }}
+                onClick={openNav}
+                data-mobile-menu
+                className="text-gray-400 py-3 px-2 hover:text-gray-200 block md:hidden"
               >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <line x1="4" y1="6" x2="20" y2="6" />
-                <line x1="4" y1="12" x2="20" y2="12" />
-                <line x1="4" y1="18" x2="20" y2="18" />
-              </svg>
-            </button>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="icon icon-tabler icon-tabler-menu-2"
+                  width="44"
+                  height="44"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="#2c3e50"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <line x1="4" y1="6" x2="20" y2="6" />
+                  <line x1="4" y1="12" x2="20" y2="12" />
+                  <line x1="4" y1="18" x2="20" y2="18" />
+                </svg>
+              </button>
+            )}
           </div>
-          <div id="mySidenav" className="sidenav">
-            <a href="javascript:void(0)" className="closebtn" onClick={closeNav}>
-              &times;
-            </a>
+          <div id="mySidenav" className="sidenav md:hidden">
+            {navOpen && (
+              <button
+                id="closeBtn"
+                className="closebtn text-gray-400 py-3 px-2 hover:text-gray-200 block md:hidden"
+                onClick={closeNav}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="icon icon-tabler icon-tabler-x"
+                  width="44"
+                  height="44"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="#2c3e50"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+            )}
             <a href="#">About</a>
             <a href="#">Services</a>
             <a href="#">Clients</a>
             <a href="#">Contact</a>
-          </div>
-          <div className="hidden bg-slate-700 md:hidden" id="mobile-menu">
-            <div className="flex flex-col gap-1 py-3">
-              <Link href="/ask">
-                <a className="text-white px-5 py-3 rounded-md hover:bg-white/5">
-                  Ask
-                </a>
-              </Link>
-              <a
-                href=""
-                className="hover:bg-white/5 text-white block px-3 py-2 rounded-md font-medium"
-              >
-                Team
-              </a>
-              <a
-                href=""
-                className="hover:bg-white/5 text-white block px-3 py-2 rounded-md font-medium"
-              >
-                Team
-              </a>
-              <a
-                href=""
-                className="hover:bg-white/5 text-white block px-3 py-2 rounded-md font-medium"
-              >
-                Team
-              </a>
-            </div>
           </div>
         </nav>
       </div>
