@@ -2,8 +2,10 @@
 import Link from "next/link";
 import React from "react";
 import { AiFillGithub, AiOutlineGoogle } from "react-icons/ai";
+import useAuth from "../../hook/useAuth";
 
 const RegisterMain = () => {
+  const { loginUser, signInWithGoogle } = useAuth();
   return (
     <div>
       <div
@@ -17,7 +19,7 @@ const RegisterMain = () => {
         </div>
         <div className=" mt-16 md:mt-0 ">
           <form>
-            <div className="w-full drop-shadow-lg bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 flex items-center justify-center">
+            <div className="w-full drop-shadow-lg  flex items-center justify-center">
               <div className="bg-white dark:bg-darkBlue rounded-lg py-6 px-10 sm:max-w-md w-full ">
                 <div className="sm:text-3xl text-2xl font-semibold text-center text-sky-600  mb-12">
                   Register Form
@@ -66,20 +68,26 @@ const RegisterMain = () => {
                     </button>
                   </div>
                   <div className="text-center">
-                    <p>Or Register in with</p>
+                    <p>or register by using</p>
                     <div className="flex justify-center my-2">
                       <div className="mx-1">
-                        <AiOutlineGoogle />
+                        <AiOutlineGoogle
+                          className=" text-slate-300 hover:text-white text-4xl m-2 cursor-pointer"
+                          onClick={() => signInWithGoogle()}
+                        />
                       </div>
                       <div className="mx-1">
-                        <AiFillGithub />
+                        <AiFillGithub className=" text-slate-300 hover:text-white text-4xl m-2 cursor-pointer" />
                       </div>
                     </div>
                   </div>
                   <div className="flex justify-center ">
                     <p className="text-gray-500">Already have an acount? </p>
                     <Link href="/login">
-                      <a href="" className="text-sky-600 pl-2">
+                      <a
+                        href=""
+                        className="text-sky-600 hover:text-sky-400 hover:underline pl-2"
+                      >
                         Log in
                       </a>
                     </Link>

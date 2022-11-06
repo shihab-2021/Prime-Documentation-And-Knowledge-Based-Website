@@ -1,4 +1,5 @@
 import MainBlogs from "../components/Blogs/MainBlogs/MainBlogs";
+import authCheck from "../hook/authCheck";
 
 
 const blogs = () => {
@@ -9,4 +10,4 @@ const blogs = () => {
     );
 };
 
-export default blogs;
+export default authCheck(blogs);
