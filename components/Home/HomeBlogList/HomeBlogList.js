@@ -104,11 +104,16 @@ const HomeBlogList = () => {
       <div className="mt-12 flex justify-center">
         <Link href="/blogs">
           <a>
+            <button
+              type="submit"
+              className=" rounded-full p-3 w-full sm:w-56 bg-gradient-to-r hover:from-teal-200 hover:to-sky-900 from-sky-900  to-teal-200 text-white text-lg font-semibold "
+            >
+              See All
+            </button>
             {/* <SvgButton sx={{ textAlign: "center", color: "#6ab3fb" }}>
                 {" "}
                 See All <KeyboardDoubleArrowRightIcon />
               </SvgButton> */}{" "}
-            see all
           </a>
         </Link>
       </div>

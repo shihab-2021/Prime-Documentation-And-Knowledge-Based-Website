@@ -2,15 +2,19 @@ import Link from "next/link";
 import { useTheme } from "next-themes";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { useState, useEffect } from "react";
+import useAuth from "../../../hook/useAuth";
 
 /* eslint-disable @next/next/no-img-element */
 const Navbar = () => {
-  // let mobileMenu = document.getElementById("mobile-menu");
+  const { user, logout } = useAuth();
+  // console.log(user);
   const { systemTheme, theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // for theme changing
   const renderThemeChange = () => {
     if (!mounted) return null;
 
@@ -19,7 +23,7 @@ const Navbar = () => {
     if (currentTheme === "dark") {
       return (
         <MdLightMode
-          className="h-7 w-7 mt-2 pt-1"
+          className="h-7 w-7"
           role="button"
           onClick={() => setTheme("light")}
         />
@@ -27,7 +31,7 @@ const Navbar = () => {
     } else {
       return (
         <MdDarkMode
-          className="h-7 w-7 mt-2 pt-1"
+          className="h-7 w-7"
           role="button"
           onClick={() => setTheme("dark")}
         />
@@ -35,6 +39,7 @@ const Navbar = () => {
     }
   };
 
+  // for sticky navbar
   useEffect(() => {
     var prevScrollpos = window.pageYOffset;
     window.onscroll = function () {
@@ -54,8 +59,6 @@ const Navbar = () => {
   /* Open the sidenav */
   function openNav() {
     document.getElementById("mySidenav").style.width = "100%";
-    // document.getElementById("closeBtn").style.display = "block";
-    // document.getElementById("openBtn").style.display = "none";
     setNavOpen(true);
     document.body.classList.add("stop-scrolling");
   }
@@ -63,8 +66,6 @@ const Navbar = () => {
   /* Close/hide the sidenav */
   function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
-    // document.getElementById("closeBtn").style.display = "none";
-    // document.getElementById("openBtn").style.display = "block";
     setNavOpen(false);
     document.body.classList.remove("stop-scrolling");
   }
@@ -138,12 +139,56 @@ const Navbar = () => {
                   </li>
                 </ul>
               </div>
-              <Link href="/login">
-                <a className="title-btn ml-5 mr-5 rounded-full border-2 dark:border-gray-400 border-gray-700 font-serif self-center px-4 py-2 text-base font-bold dark:hover:border-white dark:hover:text-white text-black dark:text-white hover:text-black hover:border-black">
-                  Login
-                </a>
-              </Link>
-              <div className=" text-black dark:text-white">{renderThemeChange()}</div>
+              {user?.email ? (
+                <div className="group relative inline-block">
+                  <button className="link-item">
+                    <a className="text-black font-medium text-lg font-serif dark:text-white px-5 py-3 rounded-md hover:bg-white/5 inline-flex items-center">
+                      <span className="mr-1 pr-4">
+                        <img
+                          style={{ height: "40px", width: "40px" }}
+                          className="link-item inline-flex items-center rounded-full object-cover"
+                          src={
+                            user?.photoURL
+                              ? user?.photoURL
+                              : `https://i.ibb.co/DMYmT3x/Generic-Profile.jpg`
+                          }
+                          alt=""
+                        />
+                      </span>
+                      <span className="h-4 w-1 fill-current"></span>
+                    </a>
+                  </button>
+                  <ul className="absolute hidden pt-1 text-gray-700 group-hover:block">
+                    <li className="">
+                      <Link href="/about">
+                        <a className="whitespace-no-wrap block rounded-t bg-gray-200 py-2 px-4 hover:bg-gray-400">
+                          My Profile
+                        </a>
+                      </Link>
+                    </li>
+                    <li className="">
+                      <a
+                        onClick={() => logout()}
+                        className="whitespace-no-wrap block rounded-b bg-gray-200 py-2 px-4 hover:bg-gray-400 cursor-pointer"
+                      >
+                        Logout
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              ) : (
+                <div className=" flex justify-center items-center ">
+                  <Link href="/login">
+                    <a className="title-btn ml-5 mr-5 rounded-full border-2 dark:border-gray-400 border-gray-700 font-serif self-center px-4 py-2 text-base font-bold dark:hover:border-white dark:hover:text-white text-black dark:text-white hover:text-black hover:border-black">
+                      Login
+                    </a>
+                  </Link>
+                </div>
+              )}
+
+              <div className=" text-black dark:text-white flex justify-center items-center">
+                {renderThemeChange()}
+              </div>
             </div>
             {/* for mobile version  */}
             {!navOpen && (
