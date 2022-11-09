@@ -7,6 +7,15 @@ import useAuth from "../../../hook/useAuth";
 /* eslint-disable @next/next/no-img-element */
 const Navbar = () => {
   const { user, logout } = useAuth();
+  const [data, setData] = useState();
+  useEffect(() => {
+    fetch(`https://incognito-prime.herokuapp.com/users/${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => setData(data))
+      .catch((error) => {
+        console.log(error.message);
+      });
+  }, [data, user?.email]);
   // console.log(user);
   const { systemTheme, theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -148,8 +157,8 @@ const Navbar = () => {
                           style={{ height: "40px", width: "40px" }}
                           className="link-item inline-flex items-center rounded-full object-cover"
                           src={
-                            user?.photoURL
-                              ? user?.photoURL
+                            data?.image
+                              ? data?.image
                               : `https://i.ibb.co/DMYmT3x/Generic-Profile.jpg`
                           }
                           alt=""
@@ -160,7 +169,7 @@ const Navbar = () => {
                   </button>
                   <ul className="absolute hidden pt-1 text-gray-700 group-hover:block">
                     <li className="">
-                      <Link href="/about">
+                      <Link href="/giveInfo">
                         <a className="whitespace-no-wrap block rounded-t bg-gray-200 py-2 px-4 hover:bg-gray-400">
                           My Profile
                         </a>

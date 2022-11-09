@@ -1,8 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BiVideoPlus } from "react-icons/bi";
 import dynamic from "next/dynamic";
 import Tags from "../../Shared/Tags/Tags";
+import useAuth from "../../../hook/useAuth";
 const TextEditor = dynamic(
   () => import("../../Shared/TextEditor/TextEditor.js"),
   {
@@ -13,7 +14,7 @@ const TextEditor = dynamic(
 const BlogInfo = (props) => {
   const [title, setTitle] = useState("");
   const [categoryName, setCategoryName] = useState("");
-  // const [age, setAge] = useState("");
+  const {user} = useAuth()
   const [videoLoading, setVideoLoading] = useState(false);
   const [imageLoading, setImageLoading] = useState(false);
   const [image, setImage] = useState("");
@@ -21,6 +22,16 @@ const BlogInfo = (props) => {
   const [blogData, setBlogData] = useState({});
   const [value, setValue] = useState("");
   const [tags, setTags] = useState([]);
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    fetch(`https://incognito-prime.herokuapp.com/users/${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => setData(data))
+      .catch((error) => {
+        console.log(error.message);
+      });
+  }, [data, user?.email]);
 
   const blogTitle = (e) => {
     setTitle(e.target.value);
@@ -184,7 +195,7 @@ const BlogInfo = (props) => {
       tags: tags,
       uploadTime: currentTime,
       uploadDate: date,
-      // blogger: userInfoFromDB,
+      blogger: data,
       comment: [],
       reports: [],
     };

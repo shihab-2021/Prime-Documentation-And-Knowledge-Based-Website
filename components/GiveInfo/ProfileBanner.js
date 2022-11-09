@@ -11,7 +11,7 @@ const ProfileBanner = (props) => {
             padding: "60px 0 0px",
             position: "relative",
           }}
-          className="breadcrumb_area overflow-hidden bg-blue to-teal-400 from-indigo-900 dark:bg-midnight bg-gradient-to-tl dark:to-purple-700 dark:from-midnight"
+          className=" breadcrumb_area overflow-hidden bg-blue to-teal-400 from-indigo-900 dark:bg-midnight bg-gradient-to-tl dark:to-purple-700 dark:from-midnight"
         >
           <div className="container mx-auto px-4">
             <div

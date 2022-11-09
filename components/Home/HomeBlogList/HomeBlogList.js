@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { BiCommentDetail } from "react-icons/bi";
+import Loading from "../../Shared/Loading/Loading";
 
 const HomeBlogList = () => {
   const [blogs, setBlogs] = useState([]);
@@ -32,6 +33,7 @@ const HomeBlogList = () => {
           </a>
         </Link>{" "}
       </div>
+      {!trendingBlogs[0] && <div className="py-10 my-10"><Loading></Loading></div>}
       <div className="grid grid-cols-12 gap-8">
         {trendingBlogs?.map((blog) => (
           <button
@@ -69,17 +71,17 @@ const HomeBlogList = () => {
                       <div className="flex">
                         <div className="self-center">
                           <div className="scisco-verified">
-                            {/* <Avatar
+                            <img
                               alt="Bloggers image"
                               src={blog?.blogger?.image}
-                              sx={{ width: 40, height: 40 }}
-                            /> */}
+                              className="rounded-full w-10 h-10 object-cover dark:border-white border border-black"
+                            />
                           </div>
                         </div>
                         <div className="self-center pl-2">
                           <p>
                             <small className="text-sm text-Docy-Dark dark:text-white">
-                              {/* {blog?.blogger?.displayName} */} name
+                              {blog?.blogger?.displayName}
                             </small>
                           </p>
                           <p>

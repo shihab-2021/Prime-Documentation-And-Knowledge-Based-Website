@@ -73,7 +73,7 @@ const useFirebase = () => {
     const user = {
       email,
       displayName,
-      image: "",
+      image: "profilePic.jpg",
       role: "user",
       followers: [],
       following: [],

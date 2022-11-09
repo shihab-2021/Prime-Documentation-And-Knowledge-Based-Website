@@ -7,13 +7,12 @@ import Loading from "../Shared/Loading/Loading";
 const GiveInfoMain = () => {
   const { user } = useAuth();
   const [data, setData] = useState();
-  console.log(data);
   useEffect(() => {
-    fetch(`https://incognito-prime.herokuapp.com/users/${user.email}`)
+    fetch(`https://incognito-prime.herokuapp.com/users/${user?.email}`)
       .then((res) => res.json())
       .then((data) => setData(data))
-      .catch();
-  }, [user]);
+      .catch((error)=>{console.log(error.message)});
+  }, [data, user?.email]);
   return (
     <div>
       {!data && <Loading></Loading>}

@@ -10,4 +10,4 @@ const blogs = () => {
     );
 };
 
-export default authCheck(blogs);
+export default blogs;
