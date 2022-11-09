@@ -1,11 +1,233 @@
-
+/* eslint-disable @next/next/no-img-element */
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { BiCommentDetail } from "react-icons/bi";
+import BlogsHeroSection from "../BlogsHeroSection/BlogsHeroSection";
 
 const MainBlogs = () => {
-    return (
-        <div>
-            <h1>This is blogs</h1>
-        </div>
+  const [blogs, setBlogs] = useState();
+  const [search, setSearch] = useState(false);
+
+  useEffect(() => {
+    fetch(`https://incognito-prime.herokuapp.com/blogs`)
+      .then((res) => res.json())
+      .then((data) => setBlogs(data))
+      .catch((error) => {
+        console.log(error.message);
+      });
+  }, []);
+
+  //pagination start
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(5);
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const allBlogs = [].concat(blogs).reverse();
+  const recentPosts = allBlogs?.slice(0, 3);
+
+  const currentPosts = allBlogs?.slice(indexOfFirstPost, indexOfLastPost);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  //pagination end
+
+  // searching code start
+  const [filter, setFilter] = useState("");
+  const searchText = (event) => {
+    setSearch(true);
+    setFilter(event.target.value);
+    if (event.target.value === "") {
+      setSearch(false);
+    }
+  };
+  let dataSearch = blogs?.filter((item) => {
+    return Object.keys(item).some((key) =>
+      item[key]
+        ?.toString()
+        .toLowerCase()
+        .includes(filter.toString().toLowerCase())
     );
+  });
+  dataSearch?.reverse();
+  // searching code end
+  console.log(dataSearch);
+  return (
+    <div>
+      <BlogsHeroSection></BlogsHeroSection>
+      <div className="container mx-auto px-4 mt-16">
+        {/* mobile search option start */}
+        <div className="search-box mb-8 block rounded bg-slate-100 p-6 text-center dark:bg-DarkGray lg:hidden">
+          <h4 className="mb-2 font-bold">Search</h4>
+          <hr />
+          <input
+            type="search"
+            placeholder="Search..."
+            name=""
+            id=""
+            className="mt-4 mb-6 w-full rounded-full bg-slate-200 py-2 px-4 focus:outline-none dark:text-black"
+            onChange={searchText.bind(this)}
+          />
+        </div>
+        {/* mobile search option end */}
+        {/* main content start */}
+        <div className="grid grid-cols-12 gap-4">
+          {/* showing blogs start */}
+          <div className="col-span-12 lg:col-span-8">
+            {search && (
+              <div>
+                {!dataSearch[0] && (
+                  <div className="text-center">
+                    <h1>Sorry Nothing Found!</h1>
+                  </div>
+                )}
+                {dataSearch?.map((blog) => (
+                  <div
+                    key={blog?._id}
+                    className="mb-8 grid grid-cols-3 gap-4"
+                    // container
+                    // spacing={{ xs: 2, md: 2 }}
+                    // columns={{ xs: 4, sm: 12, md: 12 }}
+                  >
+                    <div className="sm:col-span-1 col-span-3">
+                      <img
+                        src={blog?.image}
+                        className="-mb-4 h-80 w-full object-cover md:h-64 md:rounded"
+                        alt=""
+                      />
+                    </div>
+                    <div className="sm:col-span-2 col-span-3">
+                      <Link
+                        // onClick={() => dispatch(ADD_TO_BLOG(blog))}
+                        href={`/blog/${blog?._id}`}
+                      >
+                        <a>
+                          <div className=" min-h-72 bg-slate-200 shadow-lg dark:bg-DarkGray  px-6  py-5 hover:shadow md:h-64 md:rounded">
+                            <p className="text-red-400">{blog?.category}</p>
+                            <h3 className="cursor-pointer pt-4 pb-10 font-bold hover:underline ">
+                              {blog?.title}
+                            </h3>
+                            <div className="items-center  justify-between md:flex">
+                              <div className="mb-4 flex items-center">
+                                <img
+                                  alt="Bloggers image"
+                                  src={blog?.blogger?.image}
+                                  className="rounded-full w-10 h-10 object-cover dark:border-white border border-black"
+                                />
+                                <p className="pl-1">
+                                  {" "}
+                                  {blog?.blogger?.displayName} <br />
+                                  <small className="hidden md:flex">
+                                    {" "}
+                                    {blog?.uploadDate} - {blog?.uploadTime}
+                                  </small>
+                                </p>
+                              </div>
+                              <div>
+                                <p className="flex justify-center items-center">
+                                  {" "}
+                                  <BiCommentDetail />
+                                  {blog?.comment?.length}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </a>
+                      </Link>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+            {!search && (
+              <div>
+                {currentPosts?.map((blog) => (
+                  <div
+                    key={blog?._id}
+                    className="mb-8 grid grid-cols-3 gap-4"
+                    // container
+                    // spacing={{ xs: 2, md: 2 }}
+                    // columns={{ xs: 4, sm: 12, md: 12 }}
+                  >
+                    <div className="sm:col-span-1 col-span-3">
+                      <img
+                        src={blog?.image}
+                        className="-mb-4 h-80 w-full object-cover md:h-64 md:rounded"
+                        alt=""
+                      />
+                    </div>
+                    <div className="sm:col-span-2 col-span-3">
+                      <Link
+                        // onClick={() => dispatch(ADD_TO_BLOG(blog))}
+                        href={`/blog/${blog?._id}`}
+                      >
+                        <a>
+                          <div className=" min-h-72 bg-slate-200 shadow-lg dark:bg-DarkGray  px-6  py-5 hover:shadow md:h-64 md:rounded">
+                            <p className="text-red-400">{blog?.category}</p>
+                            <h3 className="cursor-pointer pt-4 pb-10 font-bold hover:underline ">
+                              {blog?.title}
+                            </h3>
+                            <div className="items-center  justify-between md:flex">
+                              <div className="mb-4 flex items-center">
+                                <img
+                                  alt="Bloggers image"
+                                  src={blog?.blogger?.image}
+                                  className="rounded-full w-10 h-10 object-cover dark:border-white border border-black"
+                                />
+                                <p className="pl-1">
+                                  {" "}
+                                  {blog?.blogger?.displayName} <br />
+                                  <small className="hidden md:flex">
+                                    {" "}
+                                    {blog?.uploadDate} - {blog?.uploadTime}
+                                  </small>
+                                </p>
+                              </div>
+                              <div>
+                                <p className="flex justify-center items-center">
+                                  {" "}
+                                  <BiCommentDetail />
+                                  {blog?.comment?.length}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </a>
+                      </Link>
+                    </div>
+                  </div>
+                ))}
+                {/* <div className="pb-6">
+                  <Pagination
+                    postsPerPage={postsPerPage}
+                    totalPosts={blogs?.length}
+                    paginate={paginate}
+                  />
+                </div> */}
+              </div>
+            )}
+          </div>
+          {/* showing blogs end */}
+          {/* sidebar start */}
+          <div className="col-span-12 lg:col-span-4">
+            <div className="search-box hidden rounded bg-slate-200 p-6 text-center dark:bg-DarkGray lg:block">
+              <h4 className="mb-2 font-bold">Search</h4>
+              <hr className="bg-white border-slate-300" />
+              <input
+                type="search"
+                placeholder="Search..."
+                name=""
+                id=""
+                className="mt-4 mb-6 w-full rounded-full bg-slate-300 py-2 px-4 focus:outline-none dark:text-black"
+                onChange={searchText?.bind(this)}
+              />
+            </div>
+          </div>
+          {/* sidebar end */}
+        </div>
+        {/* main content end */}
+      </div>
+    </div>
+  );
 };
 
 export default MainBlogs;

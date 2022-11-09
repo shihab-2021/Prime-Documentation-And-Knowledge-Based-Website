@@ -1,18 +1,11 @@
 import React from "react";
-// import { WifiLoader } from "react-awesome-loaders";
+import { HashLoader } from "react-spinners";
 const Loading = () => {
   return (
-    <div className="flex h-screen w-full items-center justify-center">
+    <div className="flex w-full items-center justify-center">
       <>
-      <p>Loading .... </p>
-        {/* <WifiLoader
-          background={"transparent"}
-          desktopSize={"150px"}
-          mobileSize={"150px"}
-          text={"Loading ...."}
-          backColor="#E8F2FC"
-          frontColor="#4645F6"
-        /> */}
+        {/* <p>Loading .... </p> */}
+        <HashLoader color="#36d7b7" size={100} />
         <br />
       </>
     </div>
