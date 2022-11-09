@@ -20,7 +20,7 @@ const RegisterMain = () => {
         <div className=" mt-16 md:mt-0 ">
           <form>
             <div className="w-full drop-shadow-lg  flex items-center justify-center">
-              <div className="bg-white dark:bg-darkBlue rounded-lg py-6 px-10 sm:max-w-md w-full ">
+              <div className=" bg-slate-200 dark:bg-darkBlue rounded-lg py-6 px-10 sm:max-w-md w-full ">
                 <div className="sm:text-3xl text-2xl font-semibold text-center text-sky-600  mb-12">
                   Register Form
                 </div>

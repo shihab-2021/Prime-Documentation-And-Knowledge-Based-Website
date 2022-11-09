@@ -70,8 +70,25 @@ const useFirebase = () => {
 
   // Save User Information
   const userData = (email, displayName, method) => {
-    const user = { email, displayName };
-    fetch("https://sleepy-taiga-46834.herokuapp.com/users", {
+    const user = {
+      email,
+      displayName,
+      image: "",
+      role: "user",
+      followers: [],
+      following: [],
+      address: "",
+      biography: "",
+      gender: "",
+      profession: "",
+      website: "",
+      birthDate: "",
+      facebook: "",
+      twitter: "",
+      linkedin: "",
+      instagram: "",
+    };
+    fetch("https://incognito-prime.herokuapp.com/users", {
       method: method,
       headers: {
         "content-type": "application/json",

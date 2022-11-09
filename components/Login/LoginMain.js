@@ -24,7 +24,7 @@ const LoginMain = () => {
         <div className=" mt-16 md:mt-0 ">
           <form>
             <div className="w-full drop-shadow-lg  flex items-center justify-center">
-              <div className="bg-white dark:bg-darkBlue rounded-lg py-6 px-10 sm:max-w-md w-full ">
+              <div className=" bg-slate-200 dark:bg-darkBlue rounded-lg py-6 px-10 sm:max-w-md w-full ">
                 <div className="sm:text-3xl text-2xl font-semibold text-center text-sky-600  mb-12">
                   Login Form
                 </div>
@@ -33,7 +33,7 @@ const LoginMain = () => {
                     <input
                       type="email"
                       name="email"
-                      className="focus:outline-none bg-white dark:bg-darkBlue border-b w-full pb-2 border-sky-400 placeholder-gray-500 my-8"
+                      className="focus:outline-none bg-slate-200 dark:bg-darkBlue border-b w-full pb-2 border-sky-400 placeholder-gray-500 my-8"
                       placeholder="Eamil Adress "
                     />
                   </div>
@@ -42,7 +42,7 @@ const LoginMain = () => {
                     <input
                       type="password"
                       name="password"
-                      className="focus:outline-none bg-white dark:bg-darkBlue border-b w-full pb-2 border-sky-400 placeholder-gray-500 mb-8"
+                      className="focus:outline-none bg-slate-200 dark:bg-darkBlue border-b w-full pb-2 border-sky-400 placeholder-gray-500 mb-8"
                       placeholder="Password "
                     />
                   </div>
