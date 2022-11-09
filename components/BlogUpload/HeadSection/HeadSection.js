@@ -5,12 +5,11 @@ const HeadSection = () => {
     <div>
       <div
         style={{
-          background: "linear-Gradient( 60deg , #10b3d6 0%, #1d2746 100%)",
+          // background: "linear-Gradient( 60deg , #10b3d6 0%, #1d2746 100%)",
           padding: "60px 0 0px",
           position: "relative",
-          zIndex: "-1"
         }}
-        className="breadcrumb_area overflow-hidden"
+        className="breadcrumb_area overflow-hidden bg-blue to-teal-400 from-indigo-900 dark:bg-midnight bg-gradient-to-tl dark:to-purple-700 dark:from-midnight"
       >
         <div className="container px-4 mx-auto">
           <div
