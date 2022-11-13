@@ -33,24 +33,87 @@ const HomeBlogList = () => {
           </a>
         </Link>{" "}
       </div>
-      {!trendingBlogs[0] && <div className="py-10 my-10"><Loading></Loading></div>}
-      <div className="grid grid-cols-12 gap-8">
+      {!trendingBlogs[0] && (
+        <div className="py-10 my-10">
+          <Loading></Loading>
+        </div>
+      )}
+      <div className="grid grid-cols-12 gap-4">
+        {trendingBlogs?.map((blog) => (
+          <div key={blog?._id} className="col-span-12 lg:col-span-6">
+            <div
+              className="mb-8 grid grid-cols-3 gap-4"
+              // container
+              // spacing={{ xs: 2, md: 2 }}
+              // columns={{ xs: 4, sm: 12, md: 12 }}
+            >
+              <div className="sm:col-span-1 col-span-3 hover:shadow shadow-lg">
+                <img
+                  src={blog?.image}
+                  className="-mb-4 h-80 w-full object-cover md:h-64 md:rounded"
+                  alt=""
+                />
+              </div>
+              <div className="sm:col-span-2 col-span-3">
+                <Link
+                  // onClick={() => dispatch(ADD_TO_BLOG(blog))}
+                  href={`/blogs/blog/${blog?._id}`}
+                >
+                  <a>
+                    <div className=" min-h-72 bg-slate-200 shadow-lg dark:bg-DarkGray  px-6  py-5 hover:shadow md:h-64 md:rounded">
+                      <p className="text-red-400">{blog?.category}</p>
+                      <h3 className="cursor-pointer pt-4 pb-10 font-bold hover:underline ">
+                        {blog?.title}
+                      </h3>
+                      <div className="items-center  justify-between md:flex">
+                        <div className="mb-4 flex items-center">
+                          <img
+                            alt="Bloggers image"
+                            src={blog?.blogger?.image}
+                            className="rounded-full w-10 h-10 object-cover dark:border-white border border-black"
+                          />
+                          <p className="pl-1">
+                            {" "}
+                            {blog?.blogger?.displayName} <br />
+                            <small className="hidden md:flex">
+                              {" "}
+                              {blog?.uploadDate} - {blog?.uploadTime}
+                            </small>
+                          </p>
+                        </div>
+                        <div>
+                          <p className="flex justify-center items-center">
+                            {" "}
+                            <BiCommentDetail />
+                            {blog?.comment?.length}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                </Link>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      {/* <div className="grid grid-cols-12 gap-8">
         {trendingBlogs?.map((blog) => (
           <button
             key={blog?._id}
             className="col-span-12 min-h-full w-full rounded text-left font-serif  text-Dark shadow dark:text-white sm:col-span-6 md:col-span-6"
-            //   onClick={() => dispatch(ADD_TO_BLOG(blog))}
+              onClick={() => dispatch(ADD_TO_BLOG(blog))}
           >
             <Link
               href="/"
-              //    {`/blog/${blog?._id}`}
+                 {`/blog/${blog?._id}`}
             >
               <a>
                 <div className="min-h-full rounded-lg bg-slate-100 shadow-lg dark:bg-darkBlue">
                   <img
                     className="w-full rounded object-cover h-80"
-                    // h-96
-                    // src="https://source.unsplash.com/random/1600x900"
+                    h-96
+                    src="https://source.unsplash.com/random/1600x900"
                     src={blog?.image}
                     alt="blogImage"
                   />
@@ -59,7 +122,7 @@ const HomeBlogList = () => {
                     className="px-4 pt-4 pb-8"
                   >
                     <h3 className="text-xl text-Docy-Dark dark:text-slate-100">
-                      {/* {blog?.title} */}
+                      {blog?.title}
                       {blog?.title?.length > 70
                         ? blog?.title?.slice(0, 70) + "..."
                         : blog?.title}
@@ -102,7 +165,7 @@ const HomeBlogList = () => {
             </Link>
           </button>
         ))}
-      </div>
+      </div> */}
       <div className="mt-12 flex justify-center">
         <Link href="/blogs">
           <a>

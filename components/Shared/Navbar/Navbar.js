@@ -3,9 +3,11 @@ import { useTheme } from "next-themes";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { useState, useEffect } from "react";
 import useAuth from "../../../hook/useAuth";
+import { useRouter } from "next/router";
 
 /* eslint-disable @next/next/no-img-element */
 const Navbar = () => {
+  const router = useRouter()
   const { user, logout } = useAuth();
   const [data, setData] = useState();
   useEffect(() => {
@@ -15,7 +17,8 @@ const Navbar = () => {
       .catch((error) => {
         console.log(error.message);
       });
-  }, [data, user?.email]);
+  }, [user?.email, router.pathname]);
+  console.log(data);
   // console.log(user);
   const { systemTheme, theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
