@@ -163,9 +163,7 @@ const MainBlogs = () => {
                         />
                       </div>
                       <div className="sm:col-span-2 col-span-3">
-                        <Link
-                          href={`/blogs/blog/${blog?._id}`}
-                        >
+                        <Link href={`/blogs/blog/${blog?._id}`}>
                           <a>
                             <div className=" min-h-72 bg-slate-200 shadow-lg dark:bg-DarkGray  px-6  py-5 hover:shadow md:h-64 md:rounded">
                               <p className="text-red-400">{blog?.category}</p>

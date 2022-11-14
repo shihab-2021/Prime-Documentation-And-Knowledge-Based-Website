@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 
 /* eslint-disable @next/next/no-img-element */
 const Navbar = () => {
-  const router = useRouter()
+  const router = useRouter();
   const { user, logout } = useAuth();
   const [data, setData] = useState();
   useEffect(() => {
