@@ -14,7 +14,7 @@ const TextEditor = dynamic(
 const BlogInfo = (props) => {
   const [title, setTitle] = useState("");
   const [categoryName, setCategoryName] = useState("");
-  const {user} = useAuth()
+  const { user } = useAuth();
   const [videoLoading, setVideoLoading] = useState(false);
   const [imageLoading, setImageLoading] = useState(false);
   const [image, setImage] = useState("");

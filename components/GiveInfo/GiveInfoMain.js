@@ -11,7 +11,9 @@ const GiveInfoMain = () => {
     fetch(`https://incognito-prime.herokuapp.com/users/${user?.email}`)
       .then((res) => res.json())
       .then((data) => setData(data))
-      .catch((error)=>{console.log(error.message)});
+      .catch((error) => {
+        console.log(error.message);
+      });
   }, [data, user?.email]);
   return (
     <div>
