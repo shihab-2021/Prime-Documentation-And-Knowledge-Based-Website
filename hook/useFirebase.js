@@ -88,13 +88,17 @@ const useFirebase = () => {
       linkedin: "",
       instagram: "",
     };
-    fetch("https://incognito-prime.herokuapp.com/users", {
+    fetch("https://incognito-prime.herokuapp.com/users-data", {
       method: method,
       headers: {
         "content-type": "application/json",
       },
       body: JSON.stringify(user),
-    }).then();
+    })
+      .then()
+      .catch((error) => {
+        setAuthError(error.massage);
+      });
   };
 
   // Login user with Email Password
