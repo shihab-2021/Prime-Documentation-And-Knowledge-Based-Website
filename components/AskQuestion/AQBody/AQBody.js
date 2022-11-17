@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import Tags from "../../Shared/Tags/Tags";
-import TextEditor from "../../Shared/TextEditor/TextEditor";
+import dynamic from "next/dynamic";
+const TextEditor = dynamic(() => import("../../Shared/TextEditor/TextEditor"), {
+  ssr: false,
+});
 
 const AQBody = () => {
   const [title, setTitle] = useState("");
