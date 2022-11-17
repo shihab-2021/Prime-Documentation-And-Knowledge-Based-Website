@@ -11,16 +11,21 @@ const authCheck = (WrappedComponent) => {
     const router = useRouter();
     // user info
     // const user = useSelector((state) => state?.reducers?.user?.currentUser);
-    const { user } = useAuth();
+    const { user, isLoading } = useAuth();
 
-    useEffect(() => {
-      if (!user?.email) {
-        router.replace("/login");
-      }
-    }, [router, user?.email]);
+    // useEffect(() => {
+    //   if (!user?.email) {
+    //     router.replace("/login");
+    //   }
+    // }, [router, user?.email]);
 
+    if (isLoading) {
+      return <Loading />;
+    }
     if (user?.email) {
       return <WrappedComponent />;
+    } else {
+      router.replace("/login");
     }
 
     return <Loading />;
