@@ -39,8 +39,6 @@ const BlogInfo = (props) => {
 
   const handleChange = (event) => {
     setCategoryName(event.target.value);
-    // props.category(event.target.value);
-    // console.log(event.target.value);
   };
 
   const dragOver = (e) => {
@@ -386,7 +384,7 @@ const BlogInfo = (props) => {
             </div>
             {/* Text editor */}
             <div className="py-4">
-              <h2 className="mb-2 text-xl text-Docy-Dark dark:text-white">
+              <h2 className="mb-2 text-xl text-Dark dark:text-white">
                 Write your documentation or blog below 🌝
               </h2>
               <div className="bg-white text-black">
