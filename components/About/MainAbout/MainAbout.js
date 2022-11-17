@@ -57,9 +57,10 @@ const MainAbout = () => {
         </div>
       </div>
 
-      <div className="sm:flex justify-center container px-4 mx-auto my-10">
+      <div className="sm:flex text-center justify-center container px-4 mx-auto my-10">
         <div className="mx-5 card ">
           <img
+            className=" object-cover rounded-md"
             style={{ width: "200px", height: "200px" }}
             src="sohan.jpeg"
             alt=""
@@ -69,8 +70,9 @@ const MainAbout = () => {
         </div>
         <div className="mx-5" style={{ width: "200px", height: "200px" }}>
           <img
+            className=" object-cover rounded-md"
             style={{ width: "200px", height: "200px" }}
-            src="shihab.jpeg"
+            src="shihab_pic.jpg"
             alt=""
           />
           <h3 className="font-bold">Shajibul Alam Shihab</h3>
@@ -78,6 +80,7 @@ const MainAbout = () => {
         </div>
         <div className="mx-5" style={{ width: "200px", height: "200px" }}>
           <img
+            className=" object-cover rounded-md"
             style={{ width: "200px", height: "200px" }}
             src="mishon.jpeg"
             alt=""
