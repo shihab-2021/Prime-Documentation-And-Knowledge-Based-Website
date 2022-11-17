@@ -88,7 +88,11 @@ const Navbar = () => {
         <nav className=" px-4 py-3">
           <div className="flex justify-between items-center container px-4 mx-auto">
             <a href="#">
-              <img className="h-fit" src="logo2.png" alt="" />
+              <img
+                className="h-fit w-44"
+                src="https://i.ibb.co/W34T3Rq/image.png"
+                alt=""
+              />
             </a>
             <div className="hidden md:flex gap-2">
               <Link href="/">
