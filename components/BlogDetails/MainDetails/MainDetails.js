@@ -372,7 +372,7 @@ const MainDetails = (props) => {
                 />
               </div>
               <button className="w-full">
-                <Link href={`/blog/blogger/${blog?.blogger?._id}`}>
+                <Link href={`/blogs/blogger/${blog?.blogger?._id}`}>
                   <a>
                     <h1 className="w-full py-2 text-center font-sans text-4xl font-bold hover:underline">
                       {blog?.blogger?.displayName}
