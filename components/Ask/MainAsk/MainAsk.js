@@ -1,9 +1,12 @@
+import AskBanner from "../AskBanner/AskBanner";
+import AskBody from "../AskBody/AskBody";
 
 
 const MainAsk = () => {
     return (
         <div>
-            <h1>This is ask</h1>
+            <AskBanner></AskBanner>
+            <AskBody></AskBody>
         </div>
     );
 };
