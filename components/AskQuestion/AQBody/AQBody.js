@@ -1,15 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Tags from "../../Shared/Tags/Tags";
 import dynamic from "next/dynamic";
+import useAuth from "../../../hook/useAuth";
+import { useRouter } from "next/router";
 const TextEditor = dynamic(() => import("../../Shared/TextEditor/TextEditor"), {
   ssr: false,
 });
 
 const AQBody = () => {
+  const { user } = useAuth();
   const [title, setTitle] = useState("");
   const [categoryName, setCategoryName] = useState("");
   const [value, setValue] = useState("");
   const [tags, setTags] = useState([]);
+  const [data, setData] = useState();
+  const router = useRouter();
+
+  useEffect(() => {
+    fetch(`https://incognito-prime.herokuapp.com/users/${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => setData(data))
+      .catch((error) => {
+        console.log(error.message);
+      });
+  }, [data, user?.email]);
+
+  let time = new Date();
+  const date = new Date().toLocaleDateString();
+  const currentTime = time.toLocaleString("en-US", {
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  });
 
   const questionTitle = (e) => {
     setTitle(e.target.value);
@@ -21,6 +43,42 @@ const AQBody = () => {
 
   const allTags = (e) => {
     setTags(e);
+  };
+
+  const handleUpload = () => {
+    console.log(title, categoryName, value, tags, currentTime, date);
+    if (!title || !categoryName || !value || !tags[0]) {
+      alert(
+        "Title, Category selection, Documentation, Tags giving are required. If any of those missing you can not submit you blog or documentation. Please enter the data if anyone is missing. Thank you."
+      );
+      return;
+    }
+    const uploadData = {
+      title: title,
+      category: categoryName,
+      documentation: value,
+      tags: tags,
+      uploadTime: currentTime,
+      uploadDate: date,
+      blogger: data,
+      answers: [],
+    };
+    console.log(uploadData);
+    // props.handleUpload(uploadData);
+    fetch("https://incognito-prime.herokuapp.com/questions", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(uploadData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          window.alert("Your question have been submitted.");
+          router.replace("/ask");
+        }
+      });
   };
   return (
     <div>
@@ -52,7 +110,7 @@ const AQBody = () => {
                 >
                   <option className="hidden">Select Category</option>
                   <option>Creative</option>
-                  <option>Inspiration</option>
+                  <option>Programming</option>
                   <option>Lifestyle</option>
                   <option>News</option>
                   <option>Photography</option>
