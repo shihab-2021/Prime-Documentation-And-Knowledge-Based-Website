@@ -92,3 +92,64 @@ a {
   display: none;
 }
 /* Text-editor css end */
+
+.bshadow {
+  box-shadow: 0 20px 40px 0 #0449591a;
+}
+/* Question section css */
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.bloc-tabs {
+  display: flex;
+}
+.tabs {
+  padding: 8px 0;
+  margin-bottom: 5px;
+  width: 100%;
+  background: rgba(128, 128, 128, 0.075);
+  cursor: pointer;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.274);
+  box-sizing: content-box;
+  position: relative;
+  outline: none;
+}
+.tabs:not(:last-child) {
+  border-right: 1px solid rgba(0, 0, 0, 0.274);
+}
+
+.active-tabs {
+  border-bottom: 1px solid transparent;
+  @apply bg-slate-400 text-Dark dark:bg-zinc-900 dark:text-white;
+}
+.content-tabs {
+  flex-grow: 1;
+}
+.content {
+  /* padding: 20px 0px; */
+  width: 100%;
+  height: 100%;
+  display: none;
+  /* @apply dark:bg-zinc-900; */
+}
+.content h2 {
+  padding: 0px 0 5px 0px;
+}
+.content hr {
+  width: 100px;
+  height: 2px;
+  background: #222;
+  margin-bottom: 5px;
+}
+.content p {
+  width: 100%;
+  height: 100%;
+}
+.active-content {
+  display: block;
+}
