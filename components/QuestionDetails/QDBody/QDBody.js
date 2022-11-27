@@ -2,10 +2,19 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { FaFacebookF, FaInstagram, FaLinkedinIn, FaPinterestP, FaTwitter } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaLinkedinIn,
+  FaPinterestP,
+  FaTwitter,
+} from "react-icons/fa";
 import { BeatLoader } from "react-spinners";
 import useAuth from "../../../hook/useAuth";
-import TextEditor from "../../Shared/TextEditor/TextEditor";
+// import TextEditor from "../../Shared/TextEditor/TextEditor";
+const TextEditor = dynamic(() => import("../../Shared/TextEditor/TextEditor"), {
+  ssr: false,
+});
 
 const QDBody = (props) => {
   const { user } = useAuth();
