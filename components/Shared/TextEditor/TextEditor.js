@@ -1,7 +1,7 @@
 import JoditEditor from "jodit-react";
 import React, { useRef } from "react";
 
-const TextEditor = ({ setValue }) => {
+const TextEditor = ({ setValue, value }) => {
   const editor = useRef(null);
   return (
     <div>
