@@ -1,6 +1,7 @@
+import Link from 'next/link';
 import React from 'react';
 
-const QDHeroSection = () => {
+const QDHeroSection = (props) => {
     return (
       <div>
         {/* Banner section  */}
@@ -21,19 +22,37 @@ const QDHeroSection = () => {
             }}
           >
             <form action="#" className="">
-              <div className="relative flex justify-center">
+              <div className="relative">
                 <div className=" py-8 px-2">
                   <div>
-                    <div className="md:flex">
+                    <div className="">
                       <div className=" py-3">
                         <div className="relative flex">
-                          <div>
-                            <div className="text-center font-bold text-white dark:text-white">
-                              <h1 className="font-serif text-4xl">
-                                Prime Blog List
-                              </h1>
-                              <p className="pt-2 font-mono">
-                                Keep explore, keep taking knowledge, be happy
+                          <div className="w-full self-center">
+                            <div className="flex w-full justify-between">
+                              <p className="font-mono text-red-500 font-bold">
+                                {props?.question?.category}
+                              </p>
+                              <div className="mb-1 self-center">
+                                <Link href="/askQuestion">
+                                  <a>
+                                    <span className="text-1xl rounded-lg bg-orange-500 px-3 py-3  font-semibold text-Docy-Dark dark:text-white">
+                                      Ask Question{" "}
+                                      <span className="">
+                                        {/* <HelpOutlineIcon className="animate-pulse" /> */}
+                                      </span>
+                                    </span>
+                                  </a>
+                                </Link>
+                              </div>
+                            </div>
+                            <h1 className="pt-2 font-serif text-4xl">
+                              {props?.question?.title}
+                            </h1>
+                            <div className="mt-3 flex">
+                              <p className="self-center pb-8">
+                                {props?.question?.uploadDate} |{" "}
+                                {props?.question?.uploadTime}
                               </p>
                             </div>
                           </div>
