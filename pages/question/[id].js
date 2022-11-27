@@ -1,13 +1,12 @@
-import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
-import QDMain from '../../components/QuestionDetails/QDMain';
+import React, { useEffect, useState } from "react";
+import QDMain from "../../components/QuestionDetails/QDMain";
 
 const Id = () => {
-    return (
-        <div>
-            <QDMain></QDMain>
-        </div>
-    );
+  return (
+    <div>
+      <QDMain></QDMain>
+    </div>
+  );
 };
 
 export default Id;
