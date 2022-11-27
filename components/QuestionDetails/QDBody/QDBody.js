@@ -12,6 +12,7 @@ import {
 import { BeatLoader } from "react-spinners";
 import useAuth from "../../../hook/useAuth";
 // import TextEditor from "../../Shared/TextEditor/TextEditor";
+import dynamic from "next/dynamic";
 const TextEditor = dynamic(() => import("../../Shared/TextEditor/TextEditor"), {
   ssr: false,
 });
