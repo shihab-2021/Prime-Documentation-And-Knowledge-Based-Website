@@ -183,7 +183,7 @@ const QDBody = (props) => {
               </div>
               <form onSubmit={handleSubmit(submitHandler)}>
                 <div className="bg-white text-black">
-                  <TextEditor value={val} setValue={setValue}></TextEditor>
+                  <TextEditor setValue={setValue}></TextEditor>
                 </div>
                 <button
                   type="submit"
