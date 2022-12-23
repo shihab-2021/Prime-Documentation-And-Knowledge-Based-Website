@@ -17,7 +17,7 @@ const AQBody = () => {
   const router = useRouter();
 
   useEffect(() => {
-    fetch(`https://incognito-prime.herokuapp.com/users/${user?.email}`)
+    fetch(`https://prime-api-5jzf.onrender.com/users-data/${user?.email}`)
       .then((res) => res.json())
       .then((data) => setData(data))
       .catch((error) => {
@@ -65,7 +65,7 @@ const AQBody = () => {
     };
     console.log(uploadData);
     // props.handleUpload(uploadData);
-    fetch("https://incognito-prime.herokuapp.com/questions", {
+    fetch("https://prime-api-5jzf.onrender.com/questions", {
       method: "POST",
       headers: {
         "content-type": "application/json",

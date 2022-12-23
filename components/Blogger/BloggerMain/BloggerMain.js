@@ -1,7 +1,7 @@
-import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
-import BloggerHeroSection from '../BloggerHeroSecton/BloggerHeroSection';
-import BloggerInfo from '../BloggerInfo/BloggerInfo';
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
+import BloggerHeroSection from "../BloggerHeroSecton/BloggerHeroSection";
+import BloggerInfo from "../BloggerInfo/BloggerInfo";
 
 const BloggerMain = () => {
   // next js hooks for dynamic routing
@@ -10,7 +10,7 @@ const BloggerMain = () => {
   const [data, setData] = useState();
   useEffect(() => {
     if (id) {
-      fetch(`https://incognito-prime.herokuapp.com/blogger/${id}`)
+      fetch(`https://prime-api-5jzf.onrender.com/blogger/${id}`)
         .then((res) => res.json())
         .then((data) => setData(data))
         .then((data) => console.log(data))

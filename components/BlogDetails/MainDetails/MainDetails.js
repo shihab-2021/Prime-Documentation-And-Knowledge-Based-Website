@@ -27,7 +27,7 @@ const MainDetails = (props) => {
 
   const [data, setData] = useState();
   useEffect(() => {
-    fetch(`https://incognito-prime.herokuapp.com/users/${user?.email}`)
+    fetch(`https://prime-api-5jzf.onrender.com/users-data/${user?.email}`)
       .then((res) => res.json())
       .then((data) => setData(data))
       .catch((error) => {
@@ -37,7 +37,7 @@ const MainDetails = (props) => {
 
   const [blogs, setBlogs] = useState();
   useEffect(() => {
-    fetch(`https://incognito-prime.herokuapp.com/blogs`)
+    fetch(`https://prime-api-5jzf.onrender.com/blogs`)
       .then((res) => res.json())
       .then((data) => setBlogs(data))
       .catch((error) => {
@@ -143,7 +143,7 @@ const MainDetails = (props) => {
     };
     console.log(payload);
     if (data) {
-      fetch(`https://incognito-prime.herokuapp.com/user`, {
+      fetch(`https://prime-api-5jzf.onrender.com/user`, {
         method: "PUT",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(payload),

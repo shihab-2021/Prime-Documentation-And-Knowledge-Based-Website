@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 const VideoList = () => {
   const [blogs, setBlogs] = useState([]);
   useEffect(() => {
-    fetch("https://incognito-prime.herokuapp.com/blogs")
+    fetch("https://prime-api-5jzf.onrender.com/blogs")
       .then((res) => res.json())
       .then((data) => setBlogs(data));
   }, []);
@@ -39,7 +39,9 @@ const VideoList = () => {
             </div>
 
             <div className="col-span-12 md:col-span-5">
-              <h2 className=" -mt-2 pb-2 font-medium text-xl">Prime Video List</h2>
+              <h2 className=" -mt-2 pb-2 font-medium text-xl">
+                Prime Video List
+              </h2>
               <ul
                 style={{ height: "350px" }}
                 className="overflow-y-auto bg-slate-400 rounded dark:bg-gray-900"

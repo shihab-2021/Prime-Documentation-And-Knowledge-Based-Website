@@ -7,7 +7,7 @@ const BloggerInfo = (props) => {
   const [blogs, setBlogs] = useState();
 
   useEffect(() => {
-    fetch(`https://incognito-prime.herokuapp.com/blogs`)
+    fetch(`https://prime-api-5jzf.onrender.com/blogs`)
       .then((res) => res.json())
       .then((data) => setBlogs(data))
       .catch((error) => {
@@ -234,53 +234,53 @@ const BloggerInfo = (props) => {
                   <div className="col-span-12 lg:col-span-8">
                     {dataSearch?.map((blog) => (
                       <div
-                      key={blog?._id}
-                      className="mb-8 grid grid-cols-3 gap-4"
-                    >
-                      <div className="sm:col-span-1 col-span-3">
-                        <img
-                          src={blog?.image}
-                          className="-mb-4 h-80 w-full object-cover md:h-64 md:rounded"
-                          alt=""
-                        />
-                      </div>
-                      <div className="sm:col-span-2 col-span-3">
-                        <Link href={`/blogs/blog/${blog?._id}`}>
-                          <a>
-                            <div className=" min-h-72 bg-slate-200 shadow-lg dark:bg-Dark  px-6  py-5 hover:shadow md:h-64 md:rounded">
-                              <p className="text-red-400">{blog?.category}</p>
-                              <h3 className="cursor-pointer pt-4 text-lg pb-10 font-bold hover:underline ">
-                                {blog?.title}
-                              </h3>
-                              <div className="items-center  justify-between md:flex">
-                                <div className="mb-4 flex items-center">
-                                  <img
-                                    alt="Bloggers image"
-                                    src={blog?.blogger?.image}
-                                    className="rounded-full w-10 h-10 object-cover dark:border-white border border-black"
-                                  />
-                                  <p className="pl-1">
-                                    {" "}
-                                    {blog?.blogger?.displayName} <br />
-                                    <small className="hidden md:flex">
+                        key={blog?._id}
+                        className="mb-8 grid grid-cols-3 gap-4"
+                      >
+                        <div className="sm:col-span-1 col-span-3">
+                          <img
+                            src={blog?.image}
+                            className="-mb-4 h-80 w-full object-cover md:h-64 md:rounded"
+                            alt=""
+                          />
+                        </div>
+                        <div className="sm:col-span-2 col-span-3">
+                          <Link href={`/blogs/blog/${blog?._id}`}>
+                            <a>
+                              <div className=" min-h-72 bg-slate-200 shadow-lg dark:bg-Dark  px-6  py-5 hover:shadow md:h-64 md:rounded">
+                                <p className="text-red-400">{blog?.category}</p>
+                                <h3 className="cursor-pointer pt-4 text-lg pb-10 font-bold hover:underline ">
+                                  {blog?.title}
+                                </h3>
+                                <div className="items-center  justify-between md:flex">
+                                  <div className="mb-4 flex items-center">
+                                    <img
+                                      alt="Bloggers image"
+                                      src={blog?.blogger?.image}
+                                      className="rounded-full w-10 h-10 object-cover dark:border-white border border-black"
+                                    />
+                                    <p className="pl-1">
                                       {" "}
-                                      {blog?.uploadDate} - {blog?.uploadTime}
-                                    </small>
-                                  </p>
-                                </div>
-                                <div>
-                                  <p className="flex justify-center items-center">
-                                    {" "}
-                                    <BiCommentDetail />
-                                    {blog?.comment?.length}
-                                  </p>
+                                      {blog?.blogger?.displayName} <br />
+                                      <small className="hidden md:flex">
+                                        {" "}
+                                        {blog?.uploadDate} - {blog?.uploadTime}
+                                      </small>
+                                    </p>
+                                  </div>
+                                  <div>
+                                    <p className="flex justify-center items-center">
+                                      {" "}
+                                      <BiCommentDetail />
+                                      {blog?.comment?.length}
+                                    </p>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                          </a>
-                        </Link>
+                            </a>
+                          </Link>
+                        </div>
                       </div>
-                    </div>
                     ))}
                   </div>
                 </div>

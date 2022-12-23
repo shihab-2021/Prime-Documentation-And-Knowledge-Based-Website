@@ -17,7 +17,7 @@ const MainBlogs = () => {
   const [search, setSearch] = useState(false);
 
   useEffect(() => {
-    fetch(`https://incognito-prime.herokuapp.com/blogs`)
+    fetch(`https://prime-api-5jzf.onrender.com/blogs`)
       .then((res) => res.json())
       .then((data) => setBlogs(data))
       .catch((error) => {

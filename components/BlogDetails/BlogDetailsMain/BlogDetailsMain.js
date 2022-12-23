@@ -15,7 +15,7 @@ const BlogDetailsMain = () => {
   const [data, setData] = useState();
   useEffect(() => {
     if (id) {
-      fetch(`https://incognito-prime.herokuapp.com/blog/${id}`)
+      fetch(`https://prime-api-5jzf.onrender.com/blog/${id}`)
         .then((res) => res.json())
         .then((data) => setData(data))
         .catch((error) => {
@@ -28,7 +28,7 @@ const BlogDetailsMain = () => {
 
   const addComment = (payload) => {
     if (user?.email) {
-      fetch(`https://incognito-prime.herokuapp.com/blog/${data?._id}`, {
+      fetch(`https://prime-api-5jzf.onrender.com/blog/${data?._id}`, {
         method: "PUT",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(payload),
@@ -41,7 +41,7 @@ const BlogDetailsMain = () => {
       alert("Comment added!");
       console.log("loading....");
       if (id) {
-        fetch(`https://incognito-prime.herokuapp.com/blog/${id}`)
+        fetch(`https://prime-api-5jzf.onrender.com/blog/${id}`)
           .then((res) => res.json())
           .then((data) => setData(data))
           .then(() => setComment(false))
@@ -59,7 +59,7 @@ const BlogDetailsMain = () => {
     setReport(true);
     if (user?.email) {
       fetch(
-        `https://incognito-prime.herokuapp.com/blog/${data?._id}/reportBlog`,
+        `https://prime-api-5jzf.onrender.com/blog/${data?._id}/reportBlog`,
         {
           method: "PUT",
           headers: { "content-type": "application/json" },
@@ -76,7 +76,7 @@ const BlogDetailsMain = () => {
         })
         .catch((e) => console.log(e.message));
       if (id) {
-        fetch(`https://incognito-prime.herokuapp.com/blog/${id}`)
+        fetch(`https://prime-api-5jzf.onrender.com/blog/${id}`)
           .then((res) => res.json())
           .then((data) => setData(data))
           .then(() => setReport(false))
@@ -90,7 +90,11 @@ const BlogDetailsMain = () => {
   };
   return (
     <div>
-      {!data && <div className=" py-96"><Loading></Loading></div>}
+      {!data && (
+        <div className=" py-96">
+          <Loading></Loading>
+        </div>
+      )}
       {data && (
         <div>
           <BlogDetailsHeroSection blog={data}></BlogDetailsHeroSection>

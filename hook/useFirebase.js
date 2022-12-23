@@ -88,7 +88,7 @@ const useFirebase = () => {
       linkedin: "",
       instagram: "",
     };
-    fetch("https://incognito-prime.herokuapp.com/users-data", {
+    fetch("https://prime-api-5jzf.onrender.com/users-data", {
       method: method,
       headers: {
         "content-type": "application/json",
@@ -145,11 +145,11 @@ const useFirebase = () => {
       .finally(() => setIsLoading(false));
   };
 
-  useEffect(() => {
-    fetch(`https://sleepy-taiga-46834.herokuapp.com/users/${user.email}`)
-      .then((res) => res.json())
-      .then((data) => setAdmin(data.admin));
-  }, [user.email]);
+  // useEffect(() => {
+  //   fetch(`https://prime-api-5jzf.onrender.com/users/${user.email}`)
+  //     .then((res) => res.json())
+  //     .then((data) => setAdmin(data.admin));
+  // }, [user.email]);
 
   return {
     user,

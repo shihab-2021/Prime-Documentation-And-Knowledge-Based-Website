@@ -8,7 +8,7 @@ const GiveInfoMain = () => {
   const { user } = useAuth();
   const [data, setData] = useState();
   useEffect(() => {
-    fetch(`https://incognito-prime.herokuapp.com/users/${user?.email}`)
+    fetch(`https://prime-api-5jzf.onrender.com/users-data/${user?.email}`)
       .then((res) => res.json())
       .then((data) => setData(data))
       .catch((error) => {

@@ -8,7 +8,7 @@ const BlogUploadMain = () => {
   const router = useRouter();
   const uploadBlog = (blog) => {
     console.log(blog);
-    fetch("https://incognito-prime.herokuapp.com/blogs", {
+    fetch("https://prime-api-5jzf.onrender.com/blogs", {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -116,7 +116,7 @@ const ProfileEdit = (props) => {
       (userInfo?.linkedin && userInfo?.linkedin !== data?.linkedin) ||
       (userInfo?.instagram && userInfo?.instagram !== data?.instagram)
     ) {
-      fetch("https://incognito-prime.herokuapp.com/profile-update", {
+      fetch("https://prime-api-5jzf.onrender.com/profile-update", {
         method: "PUT",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(userInfo),

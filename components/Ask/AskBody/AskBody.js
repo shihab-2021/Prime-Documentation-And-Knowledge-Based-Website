@@ -18,7 +18,7 @@ const AskBody = () => {
   const [allQuestions, setAllQuestions] = useState();
 
   useEffect(() => {
-    fetch(`https://incognito-prime.herokuapp.com/questions`)
+    fetch(`https://prime-api-5jzf.onrender.com/questions`)
       .then((res) => res.json())
       .then((data) => setQuestions(data))
       .catch((error) => {
