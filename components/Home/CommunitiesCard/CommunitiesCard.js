@@ -64,7 +64,7 @@ const CommunitiesCard = () => {
   // )
   const [blogs, setBlogs] = useState([]);
   useEffect(() => {
-    fetch("https://incognito-prime.herokuapp.com/blogs")
+    fetch("https://prime-api-5jzf.onrender.com/blogs")
       .then((res) => res.json())
       .then((data) => setBlogs(data));
   }, []);
@@ -85,7 +85,7 @@ const CommunitiesCard = () => {
       <div style={{ maxWidth: "1030px" }} className="container px-4 mx-auto">
         <div
           style={{ marginTop: "-115px" }}
-          className="  rounded-xl bg-slate-100 shadow-lg dark:bg-darkBlue"
+          className=" bshadow rounded-xl bg-slate-200 shadow-lg dark:bg-darkBlue"
         >
           {/* grid system for the items here  */}
           <div className="grid grid-cols-1 lg:grid-cols-3">

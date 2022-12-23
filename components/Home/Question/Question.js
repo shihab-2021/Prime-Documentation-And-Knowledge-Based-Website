@@ -7,7 +7,7 @@ const Question = () => {
   const [questions, setQuestions] = useState();
 
   useEffect(() => {
-    fetch(`https://incognito-prime.herokuapp.com/questions`)
+    fetch(`https://prime-api-5jzf.onrender.com/questions`)
       .then((res) => res.json())
       .then((data) => setQuestions(data))
       .catch((error) => {
@@ -49,10 +49,7 @@ const Question = () => {
           )}
           <div className="grid grid-cols-12 gap-4">
             {recentQuestion?.map((question) => (
-              <div
-                key={question._id}
-                className=" col-span-12 lg:col-span-6"
-              >
+              <div key={question._id} className=" col-span-12 lg:col-span-6">
                 <Link
                   onClick={() => dispatch(ADD_TO_QUESTION(question))}
                   href={`/question/${question?._id}`}

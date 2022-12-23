@@ -7,7 +7,7 @@ import Loading from "../../Shared/Loading/Loading";
 const HomeBlogList = () => {
   const [blogs, setBlogs] = useState([]);
   useEffect(() => {
-    fetch("https://incognito-prime.herokuapp.com/blogs")
+    fetch("https://prime-api-5jzf.onrender.com/blogs")
       .then((res) => res.json())
       .then((data) => setBlogs(data));
   }, []);

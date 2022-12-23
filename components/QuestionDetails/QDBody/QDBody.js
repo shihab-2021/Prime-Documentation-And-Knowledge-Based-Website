@@ -26,7 +26,7 @@ const QDBody = (props) => {
   const val = false;
 
   useEffect(() => {
-    fetch(`https://incognito-prime.herokuapp.com/users/${user?.email}`)
+    fetch(`https://prime-api-5jzf.onrender.com/users-data/${user?.email}`)
       .then((res) => res.json())
       .then((data) => setUserData(data))
       .catch((error) => {
@@ -35,7 +35,7 @@ const QDBody = (props) => {
   }, [userData, user?.email]);
 
   useEffect(() => {
-    fetch(`https://incognito-prime.herokuapp.com/questions`)
+    fetch(`https://prime-api-5jzf.onrender.com/questions`)
       .then((res) => res.json())
       .then((data) => setQuestions(data))
       .catch((error) => {
