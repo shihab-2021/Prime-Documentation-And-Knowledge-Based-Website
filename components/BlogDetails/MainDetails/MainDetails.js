@@ -194,7 +194,7 @@ const MainDetails = (props) => {
                   }}
                   className="btn hover:text- rounded-md border-8 border-sky-500 p-2 text-gray-500 dark:hover:text-gray-200"
                 >
-                  i Reported
+                  Reported
                 </button>
               ) : (
                 <button
@@ -206,7 +206,6 @@ const MainDetails = (props) => {
                   className="btn hover:text- rounded-md border-8 border-sky-500 p-2 text-gray-500 dark:hover:text-gray-200"
                   disabled={isMatchedReport ? true : false}
                 >
-                  i{" "}
                   {isMatchedReport ? (
                     "Reported"
                   ) : props.report ? (
@@ -364,13 +363,19 @@ const MainDetails = (props) => {
           <div className="col-span-12 text-Dark dark:text-white md:col-span-12 lg:col-span-4">
             {/* Bloggers profile start */}
             <div className="pb-3">
-              <div>
+              <div
+                style={{ maxWidth: "250px", maxHeight: "250px" }}
+                className="image mx-auto overflow-hidden rounded-lg border-2"
+              >
+                <img className="w-full" src={blog?.blogger?.image} alt="" />
+              </div>
+              {/* <div>
                 <img
                   className="mx-auto border border-white object-cover p-1"
                   src={blog?.blogger?.image}
                   alt="blogger-image"
                 />
-              </div>
+              </div> */}
               <button className="w-full">
                 <Link href={`/blogs/blogger/${blog?.blogger?._id}`}>
                   <a>
@@ -428,10 +433,10 @@ const MainDetails = (props) => {
                       src={otherPost?.image}
                       alt=""
                     />
-                    <button onClick={() => dispatch(ADD_TO_BLOG(blog))}>
+                    <button>
                       <Link
                         className="self-center"
-                        href={`/blog/${otherPost?._id}`}
+                        href={`/blogs/blog/${otherPost?._id}`}
                       >
                         <a>
                           <div className="px-6 text-left ">

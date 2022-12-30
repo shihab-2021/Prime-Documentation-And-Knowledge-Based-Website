@@ -127,30 +127,33 @@ const BloggerInfo = (props) => {
                   <p className="pt-2 text-sm leading-6 text-gray-500 hover:text-gray-600 text-justify">
                     {props?.data?.biography}
                   </p>
-                  <div className="flex justify-center py-5 text-2xl ">
-                    {isMatched ? (
-                      <button className="my-3 cursor-not-allowed rounded-md border border-red-700 p-3  font-bold text-red-500">
-                        <FaHeart />
-                      </button>
-                    ) : user?.email !== props?.data?.email ? (
-                      <button
-                        onClick={() => {
-                          handleFollow(props?.data);
-                          setIsMatched(true);
-                        }}
-                        className="my-3 rounded-md border border-red-700 p-3  font-bold text-red-700"
-                      >
-                        <BiHeart />
-                      </button>
-                    ) : (
-                      <button
-                        disabled
-                        className="my-3 rounded-md border border-red-700 p-3  font-bold text-red-700"
-                      >
-                        <FaHeart />
-                      </button>
-                    )}
-                  </div>
+                  {props?.data?.email != data?.email && (
+                    <div className="flex justify-center py-5 text-2xl ">
+                      {isMatched ? (
+                        <button className="my-3 cursor-not-allowed rounded-md border border-red-700 p-3  font-bold text-red-500">
+                          <FaHeart />
+                        </button>
+                      ) : user?.email !== props?.data?.email ? (
+                        <button
+                          onClick={() => {
+                            handleFollow(props?.data);
+                            setIsMatched(true);
+                          }}
+                          className="my-3 rounded-md border border-red-700 p-3  font-bold text-red-400"
+                        >
+                          <BiHeart />
+                        </button>
+                      ) : (
+                        <button
+                          disabled
+                          className="my-3 rounded-md border border-red-700 p-3  font-bold text-red-400"
+                        >
+                          <FaHeart />
+                        </button>
+                      )}
+                    </div>
+                  )}
+                  {props?.data?.email === data?.email && (<div className="w-100 flex justify-center"><Link href='/giveInfo'><a className="border border-teal-400 p-2 my-5 rounded">Update Profile</a></Link></div>)}
                   <ul className="mt-3 divide-y rounded bg-gray-100 py-2 px-3 text-gray-600 shadow-sm dark:bg-DarkGray dark:text-slate-300">
                     <li className="flex items-center py-3">
                       <span>Member since</span>
@@ -312,7 +315,7 @@ const BloggerInfo = (props) => {
                           Birth Date
                         </div>
                         <div className="col-span-8 break-words py-2 dark:text-slate-400">
-                          {date}
+                          {date != "Invalid Date" && date}
                         </div>
                       </div>
                     </div>
