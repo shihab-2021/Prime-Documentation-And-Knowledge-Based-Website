@@ -7,11 +7,20 @@ import { BsArrowDownCircle, BsArrowUpCircle } from "react-icons/bs";
 const DashboardHome = () => {
   const [blogs, setBlogs] = useState();
   const [users, setUsers] = useState();
+  const [messages, setMessages] = useState();
 
   useEffect(() => {
     fetch(`https://prime-api-5jzf.onrender.com/blogs`)
       .then((res) => res.json())
       .then((data) => setBlogs(data))
+      .catch((error) => {
+        console.log(error.message);
+      });
+  }, []);
+  useEffect(() => {
+    fetch(`https://prime-api-5jzf.onrender.com/messages`)
+      .then((res) => res.json())
+      .then((data) => setMessages(data))
       .catch((error) => {
         console.log(error.message);
       });
@@ -32,16 +41,16 @@ const DashboardHome = () => {
 
   useEffect(() => {
     if (showMore1) {
-      setData(blogs);
+      setData(reports);
     } else {
-      setData(blogs?.slice(0, 3));
+      setData(reports?.slice(0, 3));
     }
   }, [showMore1, !reports]);
   useEffect(() => {
     if (showMore2) {
-      setData1(users);
+      setData1(messages);
     } else {
-      setData1(users?.slice(0, 3));
+      setData1(messages?.slice(0, 3));
     }
   }, [showMore2, !reports]);
   console.log(data1);
@@ -61,7 +70,7 @@ const DashboardHome = () => {
           <div className="bg-teal-200 dark:bg-teal-700 flex justify-between items-center p-5 rounded">
             <div className=" text-2xl">
               <p>Total Users</p>
-              <p>{blogs?.length}</p>
+              <p>{users?.length}</p>
             </div>
             <div className="text-6xl">
               <BiUser />
@@ -70,7 +79,7 @@ const DashboardHome = () => {
           <div className="bg-teal-200 dark:bg-teal-700 flex justify-between items-center p-5 rounded">
             <div className=" text-2xl">
               <p>Total Messages</p>
-              <p>{blogs?.length}</p>
+              <p>{messages?.length}</p>
             </div>
             <div className="text-6xl">
               <BiCommentDots />
@@ -131,20 +140,15 @@ const DashboardHome = () => {
         {/* reported blogs list end */}
         {/* reported users list start */}
         <div>
-          <h1 className="text-3xl pt-5 pb-3">Reported users</h1>
+          <h1 className="text-3xl pt-5 pb-3">Users Messages</h1>
           {/* grid system for the items here  */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {data1?.map((item) => (
               <div
-                key={item.title}
+                key={item._id}
                 className="rounded-lg dark:bg-amber-300 bg-orange-200"
               >
                 <div className="flex items-center p-4">
-                  <img
-                    className=" object-cover rounded w-24"
-                    src={item?.image}
-                    alt=""
-                  />
                   <span className="ml-4">
                     <Link href={`/blog/category/${item?.title}`}>
                       <a>

@@ -5,78 +5,74 @@ import { AiFillGithub, AiOutlineGoogle } from "react-icons/ai";
 import useAuth from "../../hook/useAuth";
 
 const RegisterMain = () => {
-  const { loginUser, signInWithGoogle,createUser } = useAuth();
+  const { loginUser, signInWithGoogle, createUser } = useAuth();
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-        const form = event.target;
-        const displayName = form.name.value;
-        
-        const email = form.email.value;
-        const address = form.address.value;
-        const password = form.password.value;
-        
+    const form = event.target;
+    const displayName = form.name.value;
 
-        const user = {
-          email,
-          displayName,
-          address,
-          image: "https://i.ibb.co/DMYmT3x/Generic-Profile.jpg",
-          role: "user",
-          followers: [],
-          following: [],
-          address: "",
-          biography: "",
-          gender: "",
-          profession: "",
-          website: "",
-          birthDate: "",
-          facebook: "",
-          twitter: "",
-          linkedin: "",
-          instagram: "",
-        };
+    const email = form.email.value;
+    const address = form.address.value;
+    const password = form.password.value;
 
-        createUser(email, password)
-            .then(result => {
+    const user = {
+      email,
+      displayName,
+      address,
+      image: "https://i.ibb.co/DMYmT3x/Generic-Profile.jpg",
+      role: "user",
+      followers: [],
+      following: [],
+      address: "",
+      biography: "",
+      gender: "",
+      profession: "",
+      website: "",
+      birthDate: "",
+      facebook: "",
+      twitter: "",
+      linkedin: "",
+      instagram: "",
+    };
 
-                const user = result.user;
-                 alert("Create Successfull");
-                // saveUser(data.name, data.email, data.option);
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        alert("Create Successfull");
+        // saveUser(data.name, data.email, data.option);
 
-               /*  const profile = {
+        /*  const profile = {
                     displayName: data.name,
 
                 } */
-              /*   updateUserProfile(profile)
+        /*   updateUserProfile(profile)
                     .then(() => {
                         // navigate('/login')
                     })
                     .catch(error => console.error(error)); */
-
-            })
-            .catch((error) => {
-                console.error(error)
-
-            });
-
-        fetch('http://localhost:5000/users-data', {
-          method: 'POST',
-          headers: {
-              'content-type': 'application/json'
-          },
-          body: JSON.stringify(user)
       })
-          .then(res => res.json())
-          .then(data => {
-              // console.log(data)
-              if (data.acknowledged) {
-                  alert('Register successfully')
-                  form.reset();
-              }
-          })
-          .catch(error => console.error(error))
-  }
+      .catch((error) => {
+        console.error(error);
+      });
+
+    fetch("https://prime-api-5jzf.onrender.com/users-data", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log(data)
+        if (data.acknowledged) {
+          alert("Register successfully");
+          form.reset();
+        }
+      })
+      .catch((error) => console.error(error));
+  };
   return (
     <div>
       <div
