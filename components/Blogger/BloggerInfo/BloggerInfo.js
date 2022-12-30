@@ -1,10 +1,35 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { BiCommentDetail } from "react-icons/bi";
+import { BiCommentDetail, BiHeart } from "react-icons/bi";
+import { MdOutlineDelete } from "react-icons/md";
+import { FaHeart } from "react-icons/fa";
+import { ImFlag } from "react-icons/im";
+import useAuth from "../../../hook/useAuth";
 
 const BloggerInfo = (props) => {
   const [blogs, setBlogs] = useState();
+  const { user } = useAuth();
+
+  const [data, setData] = useState();
+  useEffect(() => {
+    fetch(`https://prime-api-5jzf.onrender.com/users-data/${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => setData(data))
+      .catch((error) => {
+        console.log(error.message);
+      });
+  }, [user?.email]);
+  // finding the matched email
+  const [isMatched, setIsMatched] = useState(false);
+  useEffect(() => {
+    // finding the blogger id and the user following list if they match then we will disabled the following btn
+    const match = data?.following?.find((followerInfo) => {
+      return props?.data?.email === followerInfo?.email;
+    });
+    console.log(props?.data?.email);
+    if (match?.email) setIsMatched(true);
+  }, [data?.email, data?.following]);
 
   useEffect(() => {
     fetch(`https://prime-api-5jzf.onrender.com/blogs`)
@@ -31,6 +56,52 @@ const BloggerInfo = (props) => {
   });
   dataSearch?.reverse();
   console.log(dataSearch);
+  const handleDeleteBlog = (id) => {
+    const proceed = window.confirm("Are you sure, you want to delete?", id);
+    console.log(id);
+    if (proceed) {
+      const url = `https://prime-api-5jzf.onrender.com/delete-blog/${id}`;
+      fetch(url, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.deletedCount > 0) {
+            console.log(id);
+            alert("Deleted Successfully!");
+            const remainingBlogs = blogs.filter((blog) => blog._id !== id);
+            setBlogs(remainingBlogs);
+          }
+        });
+    }
+  };
+  // follow handler here
+  const handleFollow = (blogger) => {
+    const payload = {
+      bloggerId: blogger?._id,
+      userId: data?._id,
+    };
+    if (data) {
+      fetch(`https://prime-api-5jzf.onrender.com/user`, {
+        method: "PUT",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(payload),
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          if (result?.acknowledged) {
+            alert("Started following !");
+          } else {
+            alert("There is an problem we found !");
+          }
+        })
+        .catch((e) => console.log("Some thing went wrong !"));
+    } else {
+      alert("For follow you need to login !");
+    }
+  };
+  const date = new Date(props?.data?.birthDate)?.toLocaleDateString();
+  console.log(date);
   return (
     <div>
       <div className="container px-4 mx-auto">
@@ -40,16 +111,12 @@ const BloggerInfo = (props) => {
               {/* <!-- Left Side Start --> */}
               <div className="col-span-12 w-full lg:col-span-4">
                 {/* <!-- Profile Card --> */}
-                <div className="border-t-4 border-green-400 bg-white p-3 dark:bg-Dark">
+                <div className="border-t-4 border-green-400 rounded-lg bg-white p-3 dark:bg-Dark">
                   <div
                     style={{ maxWidth: "250px", maxHeight: "250px" }}
                     className="image mx-auto overflow-hidden rounded-lg border-2"
                   >
-                    <img
-                      className="w-full"
-                      src="https://i.ibb.co/DMYmT3x/Generic-Profile.jpg"
-                      alt=""
-                    />
+                    <img className="w-full" src={props?.data?.image} alt="" />
                   </div>
                   <h1 className="my-1 text-center text-2xl font-bold leading-8 text-gray-900 dark:text-slate-50">
                     {props?.data?.displayName}
@@ -57,9 +124,33 @@ const BloggerInfo = (props) => {
                   <h3 className=" text-semibold text-center text-gray-600 dark:text-slate-300">
                     {props?.data?.profession}
                   </h3>
-                  <p className="pt-2 text-sm leading-6 text-gray-500 hover:text-gray-600">
+                  <p className="pt-2 text-sm leading-6 text-gray-500 hover:text-gray-600 text-justify">
                     {props?.data?.biography}
                   </p>
+                  <div className="flex justify-center py-5 text-2xl ">
+                    {isMatched ? (
+                      <button className="my-3 cursor-not-allowed rounded-md border border-red-700 p-3  font-bold text-red-500">
+                        <FaHeart />
+                      </button>
+                    ) : user?.email !== props?.data?.email ? (
+                      <button
+                        onClick={() => {
+                          handleFollow(props?.data);
+                          setIsMatched(true);
+                        }}
+                        className="my-3 rounded-md border border-red-700 p-3  font-bold text-red-700"
+                      >
+                        <BiHeart />
+                      </button>
+                    ) : (
+                      <button
+                        disabled
+                        className="my-3 rounded-md border border-red-700 p-3  font-bold text-red-700"
+                      >
+                        <FaHeart />
+                      </button>
+                    )}
+                  </div>
                   <ul className="mt-3 divide-y rounded bg-gray-100 py-2 px-3 text-gray-600 shadow-sm dark:bg-DarkGray dark:text-slate-300">
                     <li className="flex items-center py-3">
                       <span>Member since</span>
@@ -221,7 +312,7 @@ const BloggerInfo = (props) => {
                           Birth Date
                         </div>
                         <div className="col-span-8 break-words py-2 dark:text-slate-400">
-                          {props?.data?.birthDate}
+                          {date}
                         </div>
                       </div>
                     </div>
@@ -245,40 +336,51 @@ const BloggerInfo = (props) => {
                           />
                         </div>
                         <div className="sm:col-span-2 col-span-3">
-                          <Link href={`/blogs/blog/${blog?._id}`}>
-                            <a>
-                              <div className=" min-h-72 bg-slate-200 shadow-lg dark:bg-Dark  px-6  py-5 hover:shadow md:h-64 md:rounded">
-                                <p className="text-red-400">{blog?.category}</p>
+                          <div className=" min-h-72 bg-slate-200 shadow-lg dark:bg-Dark  px-6  py-5 hover:shadow md:h-64 md:rounded">
+                            <div className="flex justify-between items-center">
+                              <h1 className="text-red-400">{blog?.category}</h1>
+                              {props?.data?.email === data?.email && (
+                                <button
+                                  onClick={() => handleDeleteBlog(blog?._id)}
+                                  type="button"
+                                  className="flex items-center text-red-700 border-red-700 border rounded p-1"
+                                >
+                                  <MdOutlineDelete /> Delete
+                                </button>
+                              )}
+                            </div>
+                            <Link href={`/blogs/blog/${blog?._id}`}>
+                              <a>
                                 <h3 className="cursor-pointer pt-4 text-lg pb-10 font-bold hover:underline ">
                                   {blog?.title}
                                 </h3>
-                                <div className="items-center  justify-between md:flex">
-                                  <div className="mb-4 flex items-center">
-                                    <img
-                                      alt="Bloggers image"
-                                      src={blog?.blogger?.image}
-                                      className="rounded-full w-10 h-10 object-cover dark:border-white border border-black"
-                                    />
-                                    <p className="pl-1">
-                                      {" "}
-                                      {blog?.blogger?.displayName} <br />
-                                      <small className="hidden md:flex">
-                                        {" "}
-                                        {blog?.uploadDate} - {blog?.uploadTime}
-                                      </small>
-                                    </p>
-                                  </div>
-                                  <div>
-                                    <p className="flex justify-center items-center">
-                                      {" "}
-                                      <BiCommentDetail />
-                                      {blog?.comment?.length}
-                                    </p>
-                                  </div>
-                                </div>
+                              </a>
+                            </Link>
+                            <div className="items-center  justify-between md:flex">
+                              <div className="mb-4 flex items-center">
+                                <img
+                                  alt="Bloggers image"
+                                  src={blog?.blogger?.image}
+                                  className="rounded-full w-10 h-10 object-cover dark:border-white border border-black"
+                                />
+                                <p className="pl-1">
+                                  {" "}
+                                  {blog?.blogger?.displayName} <br />
+                                  <small className="hidden md:flex">
+                                    {" "}
+                                    {blog?.uploadDate} - {blog?.uploadTime}
+                                  </small>
+                                </p>
                               </div>
-                            </a>
-                          </Link>
+                              <div>
+                                <p className="flex justify-center items-center">
+                                  {" "}
+                                  <BiCommentDetail />
+                                  {blog?.comment?.length}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     ))}
