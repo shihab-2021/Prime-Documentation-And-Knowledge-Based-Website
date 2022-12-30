@@ -164,7 +164,7 @@ const QDBody = (props) => {
                           <div className="scisco-verified">
                             <img
                               alt="Bloggers image"
-                              src={question?.blogger?.image}
+                              src={answer?.image}
                               className="rounded-full mr-1.5 w-10 h-10 object-cover dark:border-white border border-black"
                             />
                           </div>
