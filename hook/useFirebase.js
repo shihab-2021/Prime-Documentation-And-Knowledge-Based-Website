@@ -46,7 +46,7 @@ const useFirebase = () => {
   };
 
   // Register user with Email Password
-  const registerUser = (email, password, name, history) => {
+  /* const registerUser = (email, password, name, history) => {
     setIsLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -66,7 +66,19 @@ const useFirebase = () => {
         setAuthError(error.message);
       })
       .finally(() => setIsLoading(false));
+  }; */
+
+    // create User email ans password
+    const createUser = (email, password) => {
+       setIsLoading(true)
+      return createUserWithEmailAndPassword(auth, email, password)
+
   };
+      // log in email and password
+      const logIn = (email, password) => {
+         setIsLoading(true)
+        return signInWithEmailAndPassword(auth, email, password)
+    }
 
   // Save User Information
   const userData = (email, displayName, method) => {
@@ -152,11 +164,13 @@ const useFirebase = () => {
   // }, [user.email]);
 
   return {
+    createUser,
+    logIn,
     user,
     signInWithGoogle,
     isLoading,
     authError,
-    registerUser,
+    // registerUser,
     loginUser,
     logout,
     admin,

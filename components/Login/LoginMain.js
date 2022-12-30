@@ -10,9 +10,38 @@ import useAuth from "../../hook/useAuth";
 const LoginMain = () => {
   // nextjs hook for routing
   const router = useRouter()
-  console.log(router);
+  // console.log(router);
 
-  const { loginUser, signInWithGoogle } = useAuth();
+  const { logIn, signInWithGoogle } = useAuth();
+  // const { logIn } = useContext(AuthContext)
+    // const [loginUserEmail,setLoginUserEmail]= useState('');
+
+    const handleSubmit = event => {
+      event.preventDefault();
+      const form = event.target;
+      const email = form.email.value;
+      const password = form.password.value;
+
+      logIn(email, password)
+          .then(result => {
+              const user = result.user;
+              alert('log in successfull');
+
+              
+         
+
+
+              form.reset();
+
+
+          })
+          .catch(err => {
+              console.error(err)
+              alert('error please try again')
+              form.reset();
+
+          })
+        }
   return (
     <div>
       <div className="pt-40 pb-24  container mx-auto px-4 grid grid-cols-1 md:grid-cols-2">
@@ -22,7 +51,7 @@ const LoginMain = () => {
           </div>
         </div>
         <div className=" mt-16 md:mt-0 ">
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="w-full drop-shadow-lg  flex items-center justify-center">
               <div className=" bg-slate-200 dark:bg-darkBlue rounded-lg py-6 px-10 sm:max-w-md w-full ">
                 <div className="sm:text-3xl text-2xl font-semibold text-center text-sky-600  mb-12">
