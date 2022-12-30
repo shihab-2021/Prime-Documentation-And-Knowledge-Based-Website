@@ -63,7 +63,7 @@ const ManageUsers = () => {
                           <MdOutlineDelete /> Delete
                         </button>
                       </div>
-                      <Link href={`/users/user/${user?._id}`}>
+                      <Link href={`/blogs/blogger/${user?._id}`}>
                         <a>
                           <h3 className="cursor-pointer text-lg pt-4 font-bold hover:underline ">
                             {user?.displayName}

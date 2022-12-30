@@ -97,7 +97,7 @@ const CommunitiesCard = () => {
                 <div className="flex items-center p-8">
                   <img src={item?.icon} width="50px" height="50px" alt="img" />
                   <span className="ml-4">
-                    <Link href={`/blog/category/${item?.title}`}>
+                    <Link href={`/blogs/category/${item?.title}`}>
                       <a>
                         <h6 className="font-bold text-Docy-Dark dark:text-white">
                           {item?.title}

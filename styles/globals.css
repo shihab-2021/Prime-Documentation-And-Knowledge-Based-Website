@@ -7,8 +7,8 @@ body {
   margin: 0;
   /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
-  font-family: 'Times New Roman', Times, serif;
-  @apply to-white from-slate-300 bg-gradient-to-tl  dark:to-gray-800 dark:from-black
+  font-family: "Times New Roman", Times, serif;
+  @apply to-white from-slate-300 bg-gradient-to-tl  dark:to-gray-800 dark:from-black;
 }
 
 a {
@@ -41,7 +41,7 @@ a {
 .sidenav {
   height: 100%;
   width: 0;
-  position:fixed;
+  position: fixed;
   z-index: 1;
   top: 0;
   left: 0;
@@ -152,4 +152,9 @@ a {
 }
 .active-content {
   display: block;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Lobster&display=swap');
+.hero-title {
+  font-family: 'Bangers' !important;
 }

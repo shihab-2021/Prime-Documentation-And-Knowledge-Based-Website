@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { BiCommentDetail } from "react-icons/bi";
-import BlogsHeroSection from "../BlogsHeroSection/BlogsHeroSection";
 import {
   FaFacebookF,
   FaInstagram,
@@ -10,11 +10,14 @@ import {
   FaTwitter,
   FaLinkedinIn,
 } from "react-icons/fa";
-import Loading from "../../Shared/Loading/Loading";
+import BlogsHeroSection from "../../../components/Blogs/BlogsHeroSection/BlogsHeroSection";
+import Loading from "../../../components/Shared/Loading/Loading";
 
-const MainBlogs = () => {
+const CategoryBlogs = () => {
   const [blogs, setBlogs] = useState();
   const [search, setSearch] = useState(false);
+  const router = useRouter();
+  const id = router.query.id;
 
   useEffect(() => {
     fetch(`https://prime-api-5jzf.onrender.com/blogs`)
@@ -31,7 +34,10 @@ const MainBlogs = () => {
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const allBlogs = [].concat(blogs).reverse();
+  const allBlogs = []
+    .concat(blogs)
+    .reverse()
+    .filter((td) => td?.category === id);
   const recentPosts = allBlogs?.slice(0, 3);
 
   const currentPosts = allBlogs?.slice(indexOfFirstPost, indexOfLastPost);
@@ -153,7 +159,11 @@ const MainBlogs = () => {
             )}
             {!search && (
               <div>
-                {!currentPosts[0] && <Loading></Loading>}
+                {!currentPosts[0] && (
+                  <div className="text-center text-lg">
+                    <h1>Sorry Nothing Found!</h1>
+                  </div>
+                )}
                 {currentPosts[0] &&
                   currentPosts?.map((blog) => (
                     <div
@@ -364,4 +374,4 @@ const MainBlogs = () => {
   );
 };
 
-export default MainBlogs;
+export default CategoryBlogs;

@@ -139,17 +139,19 @@ const Navbar = () => {
                       </a>
                     </Link>
                   </li>
+                  {data?.role === "admin" && (
+                    <li className="">
+                      <Link href="/dashboard">
+                        <a className="whitespace-no-wrap block bg-gray-200 py-2 px-4 hover:bg-gray-400">
+                          Dashboard
+                        </a>
+                      </Link>
+                    </li>
+                  )}
                   <li className="">
-                    <Link href="/documentation">
-                      <a className="whitespace-no-wrap block bg-gray-200 py-2 px-4 hover:bg-gray-400">
-                        Documentation
-                      </a>
-                    </Link>
-                  </li>
-                  <li className="">
-                    <Link href="/helpdesk">
+                    <Link href="/blogUpload">
                       <a className="whitespace-no-wrap block rounded-b bg-gray-200 py-2 px-4 hover:bg-gray-400">
-                        Help desk
+                        Upload blog
                       </a>
                     </Link>
                   </li>
@@ -176,7 +178,7 @@ const Navbar = () => {
                   </button>
                   <ul className="absolute hidden pt-1 text-gray-700 group-hover:block">
                     <li className="">
-                      <Link href="/giveInfo">
+                      <Link href={`/blogs/blogger/${data?._id}`}>
                         <a className="whitespace-no-wrap block rounded-t bg-gray-200 py-2 px-4 hover:bg-gray-400">
                           My Profile
                         </a>
