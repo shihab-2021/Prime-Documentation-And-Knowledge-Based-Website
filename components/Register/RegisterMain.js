@@ -5,7 +5,78 @@ import { AiFillGithub, AiOutlineGoogle } from "react-icons/ai";
 import useAuth from "../../hook/useAuth";
 
 const RegisterMain = () => {
-  const { loginUser, signInWithGoogle } = useAuth();
+  const { loginUser, signInWithGoogle,createUser } = useAuth();
+
+  const handleSubmit = event => {
+    event.preventDefault();
+        const form = event.target;
+        const displayName = form.name.value;
+        
+        const email = form.email.value;
+        const address = form.address.value;
+        const password = form.password.value;
+        
+
+        const user = {
+          email,
+          displayName,
+          address,
+          image: "https://i.ibb.co/DMYmT3x/Generic-Profile.jpg",
+          role: "user",
+          followers: [],
+          following: [],
+          address: "",
+          biography: "",
+          gender: "",
+          profession: "",
+          website: "",
+          birthDate: "",
+          facebook: "",
+          twitter: "",
+          linkedin: "",
+          instagram: "",
+        };
+
+        createUser(email, password)
+            .then(result => {
+
+                const user = result.user;
+                 alert("Create Successfull");
+                // saveUser(data.name, data.email, data.option);
+
+               /*  const profile = {
+                    displayName: data.name,
+
+                } */
+              /*   updateUserProfile(profile)
+                    .then(() => {
+                        // navigate('/login')
+                    })
+                    .catch(error => console.error(error)); */
+
+            })
+            .catch((error) => {
+                console.error(error)
+
+            });
+
+        fetch('http://localhost:5000/users-data', {
+          method: 'POST',
+          headers: {
+              'content-type': 'application/json'
+          },
+          body: JSON.stringify(user)
+      })
+          .then(res => res.json())
+          .then(data => {
+              // console.log(data)
+              if (data.acknowledged) {
+                  alert('Register successfully')
+                  form.reset();
+              }
+          })
+          .catch(error => console.error(error))
+  }
   return (
     <div>
       <div
@@ -18,7 +89,7 @@ const RegisterMain = () => {
           </div>
         </div>
         <div className=" mt-16 md:mt-0 ">
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="w-full drop-shadow-lg  flex items-center justify-center">
               <div className=" bg-slate-200 dark:bg-darkBlue rounded-lg py-6 px-10 sm:max-w-md w-full ">
                 <div className="sm:text-3xl text-2xl font-semibold text-center text-sky-600  mb-12">
