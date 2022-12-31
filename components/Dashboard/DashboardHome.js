@@ -53,18 +53,47 @@ const DashboardHome = () => {
     if (proceed) {
       const url = `https://prime-api-5jzf.onrender.com/delete-message/${id}`;
       fetch(url, {
-        method: "DELETE", 
+        method: "DELETE",
       })
         .then((res) => res.json())
         .then((data) => {
           if (data.deletedCount > 0) {
             console.log(id);
             alert("Deleted Successfully!");
-            const remainingBlogs = messages.filter((message) => message._id !== id);
+            const remainingBlogs = messages.filter(
+              (message) => message._id !== id
+            );
             setMessages(remainingBlogs);
           }
         });
     }
+  };
+  const [email, setEmail] = useState("");
+  const [success, setSuccess] = useState(false);
+
+  const handleOnBlur = (e) => {
+    setEmail(e.target.value);
+  };
+  const handleAdminSubmit = (e) => {
+    const user = { email };
+    fetch("https://prime-api-5jzf.onrender.com/users/admin", {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount) {
+          setSuccess(true);
+        } else {
+          alert("Please enter a valid email!");
+        }
+        console.log(data);
+      });
+
+    e.preventDefault();
   };
   return (
     <div>
@@ -99,8 +128,31 @@ const DashboardHome = () => {
           </div>
         </div>
         {/* make admin start */}
-        <div>
-          
+        <div className="pt-5">
+          <h2 className=" text-2xl">MAKE AN ADMIN</h2>
+          <form
+            className="my-5"
+            onSubmit={handleAdminSubmit}
+            style={{ maxWidth: "25rem" }}
+          >
+            <input
+              placeholder="Enter email to make admin"
+              className="text-xl bg-auto p-2 border-slate-500 border rounded-lg w-full"
+              type="email"
+              onBlur={handleOnBlur}
+            />
+            <br />
+            <br />
+            <button
+              className=" border py-2 px-3 rounded-lg border-teal-500 text-xl text-teal-500"
+              type="submit"
+            >
+              Make Admin
+            </button>
+            <br />
+            <br />
+            {success && alert("Made Admin successfully!")}
+          </form>
         </div>
         {/* make admin end */}
         {/* reported blogs list start */}
