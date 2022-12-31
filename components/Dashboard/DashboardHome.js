@@ -3,6 +3,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { BiNews, BiUser, BiCommentDots } from "react-icons/bi";
 import { BsArrowDownCircle, BsArrowUpCircle } from "react-icons/bs";
+import { MdOutlineDelete } from "react-icons/md";
 
 const DashboardHome = () => {
   const [blogs, setBlogs] = useState();
@@ -46,14 +47,25 @@ const DashboardHome = () => {
       setData(reports?.slice(0, 3));
     }
   }, [showMore1, !reports]);
-  useEffect(() => {
-    if (showMore2) {
-      setData1(messages);
-    } else {
-      setData1(messages?.slice(0, 3));
+  const handleDeleteBlog = (id) => {
+    const proceed = window.confirm("Are you sure, you want to delete?", id);
+    console.log(id);
+    if (proceed) {
+      const url = `https://prime-api-5jzf.onrender.com/delete-message/${id}`;
+      fetch(url, {
+        method: "DELETE", 
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.deletedCount > 0) {
+            console.log(id);
+            alert("Deleted Successfully!");
+            const remainingBlogs = messages.filter((message) => message._id !== id);
+            setMessages(remainingBlogs);
+          }
+        });
     }
-  }, [showMore2, !reports]);
-  console.log(data1);
+  };
   return (
     <div>
       <div className="container mx-auto px-4">
@@ -86,6 +98,11 @@ const DashboardHome = () => {
             </div>
           </div>
         </div>
+        {/* make admin start */}
+        <div>
+          
+        </div>
+        {/* make admin end */}
         {/* reported blogs list start */}
         <div>
           <h1 className="text-3xl pt-5 pb-3">Reported blogs</h1>
@@ -143,27 +160,36 @@ const DashboardHome = () => {
           <h1 className="text-3xl pt-5 pb-3">Users Messages</h1>
           {/* grid system for the items here  */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-            {data1?.map((item) => (
+            {messages?.map((item) => (
               <div
                 key={item._id}
                 className="rounded-lg dark:bg-amber-300 bg-orange-200"
               >
-                <div className="flex items-center p-4">
-                  <span className="ml-4">
+                <div className=" items-center p-4">
+                  <div className="ml-4">
                     <Link href={`/blog/category/${item?.title}`}>
                       <a>
                         <h6 className="font-bold text-Dark dark:text-white">
-                          {item?.displayName}
+                          Email: {item?.email}
                         </h6>
                       </a>
                     </Link>
                     <p className="text-secondary flex items-center">
-                      {item?.reports?.length} reports
+                      Subject: {item?.subject}
                     </p>
                     <p className="text-secondary flex items-center">
-                      {item?.followers?.length} followers
+                      {item?.message}
                     </p>
-                  </span>
+                  </div>
+                  <div className="px-4 pt-3">
+                    <button
+                      onClick={() => handleDeleteBlog(item?._id)}
+                      type="button"
+                      className="flex items-center text-red-700 border-red-700 border rounded p-1"
+                    >
+                      <MdOutlineDelete /> Delete
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
