@@ -51,23 +51,25 @@ const HeroSection = () => {
       <div className=" container mx-auto flex md:flex-row flex-col py-40 px-4 items-center">
         <div
           style={{ zIndex: "1" }}
-          className=" md:w-1/2 text-center md:text-left"
+          className=" md:w-1/2 text-center md:text-left mb-10 md:mb-0"
         >
-          <p style={{ fontFamily: "Lobster" }} className="text-lg text-white">
-            Grow up with us
-          </p>
-          <h1 className="text-6xl hero-title font-bold text-white	">
-            Keep explore, keep taking
-          </h1>
-          <h1 className="text-6xl hero-title font-bold text-white pb-2	">
-            knowledge, be happy
-          </h1>
-          <p className="text-md font-sans  text-gray-300 pb-6 md:w-4/5">
-            For fans of blogs and documentation, this website will be a
-            significant and engaging resource. And also the extra features will
-            be very helpful for all stages of people. People from any stage can
-            use this platform with proper benefits.
-          </p>
+          <div>
+            <p style={{ fontFamily: "Lobster" }} className="text-lg text-white">
+              Grow up with us
+            </p>
+            <h1 className="text-6xl hero-title font-bold text-white	">
+              Keep explore, keep taking
+            </h1>
+            <h1 className="text-6xl hero-title font-bold text-white pb-2	">
+              knowledge, be happy
+            </h1>
+            <p className="text-md font-sans  text-gray-300 pb-6 md:w-4/5">
+              For fans of blogs and documentation, this website will be a
+              significant and engaging resource. And also the extra features
+              will be very helpful for all stages of people. People from any
+              stage can use this platform with proper benefits.
+            </p>
+          </div>
           <div className="flex justify-center md:justify-start">
             <Link href="/blogs">
               <a className=" bg-rose-500 hover:border-rose-400 p-3 self-center text-white rounded-xl font-bold text-xl mr-5">
@@ -77,7 +79,7 @@ const HeroSection = () => {
             <Link href="/ask">
               <a className=" border-2 flex items-center p-3 self-center text-white text-xl rounded-xl font-bold">
                 <span className="mr-2">See Ask </span>
-                <BsArrowRight className="text-xl" />
+                <BsArrowRight className="text-xl animate-ping" />
               </a>
             </Link>
           </div>
@@ -95,23 +97,14 @@ const HeroSection = () => {
               <p className="text-gray-300">Users</p>
             </div>
           </div>
-          {/* <div className="flex justify-center">
-            <div className="w-full h-10 rounded">
-              <input
-                type="search"
-                name=""
-                id="search"
-                className="w-80 rounded-full h-12 text-center bg-white text-black md:w-96 px-5"
-                placeholder="Search"
-              />
-            </div>
-          </div> */}
         </div>
-        <img
-          className=" object-cover md:w-1/2 animate-pulse"
-          src="https://i.ibb.co/bXR40Ss/image-removebg-2.png"
-          alt=""
-        />
+        <div className=" md:w-1/2">
+          <img
+            className=" object-cover animate-pulse"
+            src="https://i.ibb.co/bXR40Ss/image-removebg-2.png"
+            alt=""
+          />
+        </div>
       </div>
     </div>
   );

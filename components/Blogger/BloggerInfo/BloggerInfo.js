@@ -325,6 +325,7 @@ const BloggerInfo = (props) => {
 
                 <div className="my-4">
                   <h3 className="my-4 pt-5">Blogs</h3>
+                  {dataSearch && !dataSearch[0] && <p className="text-center text-xl">No blog has not posted yet!</p> }
                   <div className="col-span-12 lg:col-span-8">
                     {dataSearch?.map((blog) => (
                       <div

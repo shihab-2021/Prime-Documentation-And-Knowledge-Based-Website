@@ -1,11 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { useState, useEffect } from "react";
 import useAuth from "../../../hook/useAuth";
 import { useRouter } from "next/router";
-
-/* eslint-disable @next/next/no-img-element */
 const Navbar = () => {
   const router = useRouter();
   const { user, logout } = useAuth();
@@ -87,13 +86,15 @@ const Navbar = () => {
       <div className="w-full text-white">
         <nav className=" px-4 py-3">
           <div className="flex justify-between items-center container px-4 mx-auto">
-            <a href="#">
-              <img
-                className="h-fit w-44"
-                src="https://i.ibb.co/W34T3Rq/image.png"
-                alt=""
-              />
-            </a>
+            <Link href="/">
+              <a>
+                <img
+                  className="h-fit w-44"
+                  src="https://i.ibb.co/W34T3Rq/image.png"
+                  alt=""
+                />
+              </a>
+            </Link>
             <div className="hidden md:flex gap-2">
               <Link href="/">
                 <a className="text-black font-medium text-lg font-serif dark:text-white px-5 py-3 rounded-md hover:bg-white/5">
@@ -113,7 +114,7 @@ const Navbar = () => {
               {/* Dropdown button  */}
               <div className="group relative inline-block">
                 <button className="link-item">
-                  <a className="text-black font-medium text-lg font-serif dark:text-white px-5 py-3 rounded-md hover:bg-white/5 inline-flex items-center">
+                  <p className="text-black font-medium text-lg font-serif dark:text-white px-5 py-3 rounded-md hover:bg-white/5 inline-flex items-center">
                     <span className="mr-1 pr-4">Pages</span>
                     <svg
                       className="h-4 w-4 fill-current"
@@ -122,7 +123,7 @@ const Navbar = () => {
                     >
                       <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                     </svg>
-                  </a>
+                  </p>
                 </button>
                 <ul className="absolute hidden pt-1 text-gray-700 group-hover:block">
                   <li className="">
@@ -185,12 +186,12 @@ const Navbar = () => {
                       </Link>
                     </li>
                     <li className="">
-                      <a
+                      <p
                         onClick={() => logout()}
                         className="whitespace-no-wrap block rounded-b bg-gray-200 py-2 px-4 hover:bg-gray-400 cursor-pointer"
                       >
                         Logout
-                      </a>
+                      </p>
                     </li>
                   </ul>
                 </div>
