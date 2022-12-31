@@ -89,19 +89,6 @@ const ProfileEdit = (props) => {
       birthDate: Date.parse(startDate),
       image: image,
     };
-    // console.log(info);
-    // console.log(userInfo);
-    // SET_STATUS(true);
-
-    // fetch("https://polar-hamlet-38117.herokuapp.com/users", {
-    //   method: "PUT",
-    //   headers: { "content-type": "application/json" },
-    //   body: JSON.stringify(user),
-    // })
-    //   .then((res) => res.json(), alert("Update Successful"))
-    //   .catch((error) => dispatch(ADD_ERROR(error.message)))
-    //   .finally(() => dispatch(SET_STATUS(false)));
-
     if (
       (startDate && startDate !== data?.birthDate) ||
       image !== data?.image ||
@@ -125,13 +112,8 @@ const ProfileEdit = (props) => {
         .then((data) => {
           if (data.acknowledged) {
             alert("Profile updated successfully !");
-            // console.log(data);
-            // dispatch(fetchUserData(data?.email));
           }
         });
-      // .catch((error) => dispatch(ADD_ERROR(error.message)))
-      // .finally(() => dispatch(SET_STATUS(false)));
-      // console.log('ok');
     } else {
       alert("You didn't make any changes yet to update the profile !");
     }

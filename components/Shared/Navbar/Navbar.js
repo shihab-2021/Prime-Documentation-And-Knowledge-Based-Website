@@ -117,7 +117,7 @@ const Navbar = () => {
                   <p className="text-black font-medium text-lg font-serif dark:text-white px-5 py-3 rounded-md hover:bg-white/5 inline-flex items-center">
                     <span className="mr-1 pr-4">Pages</span>
                     <svg
-                      className="h-4 w-4 fill-current"
+                      className="h-4 w-4 fill-current animate-bounce"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                     >

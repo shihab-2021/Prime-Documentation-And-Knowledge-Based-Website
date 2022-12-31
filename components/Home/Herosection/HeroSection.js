@@ -79,7 +79,7 @@ const HeroSection = () => {
             <Link href="/ask">
               <a className=" border-2 flex items-center p-3 self-center text-white text-xl rounded-xl font-bold">
                 <span className="mr-2">See Ask </span>
-                <BsArrowRight className="text-xl animate-ping" />
+                <BsArrowRight className="text-xl" />
               </a>
             </Link>
           </div>
