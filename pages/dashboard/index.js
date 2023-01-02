@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import DashboardHome from "../../components/Dashboard/DashboardHome";
 import ManageBlogs from "../../components/Dashboard/ManageBlogs";
 import ManageUsers from "../../components/Dashboard/ManageUsers";
+import authCheck from "../../hook/authCheck";
 
 const Dashboard = () => {
   const [toggleState, setToggleState] = useState(1);
@@ -67,4 +68,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default authCheck(Dashboard);

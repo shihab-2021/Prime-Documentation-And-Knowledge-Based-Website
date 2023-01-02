@@ -37,7 +37,7 @@ const fakeData = [
   },
   {
     icon: "https://wordpress-theme.spider-themes.net/docy-dark/wp-content/uploads/2020/07/icon-7@2x-1.svg",
-    title: "Tourist Tour",
+    title: "Tourist Tours",
     info: "1 Posts",
   },
   {

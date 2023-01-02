@@ -1,5 +1,6 @@
 import React from "react";
 import GiveInfoMain from "../components/GiveInfo/GiveInfoMain";
+import authCheck from "../hook/authCheck";
 
 const giveInfo = () => {
   return <div>
@@ -7,4 +8,4 @@ const giveInfo = () => {
   </div>;
 };
 
-export default giveInfo;
+export default authCheck(giveInfo);

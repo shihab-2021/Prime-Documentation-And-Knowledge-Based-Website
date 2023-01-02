@@ -1,5 +1,6 @@
 import React from "react";
 import ContactMain from "../components/Contact/ContactMain/ContactMain";
+import authCheck from "../hook/authCheck";
 
 const contact = () => {
   return <div>
@@ -7,4 +8,4 @@ const contact = () => {
   </div>;
 };
 
-export default contact;
+export default authCheck(contact);

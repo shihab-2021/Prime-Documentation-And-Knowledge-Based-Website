@@ -1,5 +1,6 @@
 import React from 'react';
 import BloggerMain from '../../../components/Blogger/BloggerMain/BloggerMain';
+import authCheck from '../../../hook/authCheck';
 
 const Id = () => {
     return (
@@ -9,4 +10,4 @@ const Id = () => {
     );
 };
 
-export default Id;
+export default authCheck(Id);
