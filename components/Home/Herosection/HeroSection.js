@@ -89,11 +89,11 @@ const HeroSection = () => {
               <p className="text-gray-300">Blogs</p>
             </div>
             <div className="px-6 flex flex-col justify-center border-x-2">
-              <p className="text-3xl font-bold text-white">{users?.length}</p>
+              <p className="text-3xl font-bold text-white">{ques?.length}</p>
               <p className="text-gray-300">Questions</p>
             </div>
             <div className="pl-6 flex flex-col justify-center">
-              <p className="text-3xl font-bold text-white">{ques?.length}</p>
+              <p className="text-3xl font-bold text-white">{users?.length}</p>
               <p className="text-gray-300">Users</p>
             </div>
           </div>
