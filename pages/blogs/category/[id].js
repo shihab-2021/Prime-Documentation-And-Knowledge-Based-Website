@@ -12,6 +12,7 @@ import {
 } from "react-icons/fa";
 import BlogsHeroSection from "../../../components/Blogs/BlogsHeroSection/BlogsHeroSection";
 import Loading from "../../../components/Shared/Loading/Loading";
+import authCheck from "../../../hook/authCheck";
 
 const CategoryBlogs = () => {
   const [blogs, setBlogs] = useState();
@@ -374,4 +375,4 @@ const CategoryBlogs = () => {
   );
 };
 
-export default CategoryBlogs;
+export default authCheck(CategoryBlogs);
