@@ -38,7 +38,7 @@ const ManageBlogs = () => {
     <div>
       {/* blogs list start */}
       <div className="container mx-auto px-4">
-        <h1 className="text-3xl pt-5 pb-3">Reported blogs</h1>
+        <h1 className="text-3xl pt-5 pb-3">Manage blogs</h1>
         {/* grid system for the items here  */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {blogs?.map((blog) => (
