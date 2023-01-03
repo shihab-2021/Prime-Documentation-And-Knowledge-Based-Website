@@ -68,17 +68,16 @@ const useFirebase = () => {
       .finally(() => setIsLoading(false));
   }; */
 
-    // create User email ans password
-    const createUser = (email, password) => {
-       setIsLoading(true)
-      return createUserWithEmailAndPassword(auth, email, password)
-
+  // create User email ans password
+  const createUser = (email, password) => {
+    setIsLoading(true);
+    return createUserWithEmailAndPassword(auth, email, password);
   };
-      // log in email and password
-      const logIn = (email, password) => {
-         setIsLoading(true)
-        return signInWithEmailAndPassword(auth, email, password)
-    }
+  // log in email and password
+  const logIn = (email, password) => {
+    setIsLoading(true);
+    return signInWithEmailAndPassword(auth, email, password);
+  };
 
   // Save User Information
   const userData = (email, displayName, method) => {
@@ -142,7 +141,8 @@ const useFirebase = () => {
       setIsLoading(false);
     });
     return () => unsubscribed;
-  }, [auth]);
+  }, [auth, !user?.email, user?.email]);
+  console.log();
 
   // For Logout
   const logout = () => {

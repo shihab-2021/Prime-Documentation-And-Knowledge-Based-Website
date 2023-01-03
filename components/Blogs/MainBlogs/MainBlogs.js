@@ -152,9 +152,9 @@ const MainBlogs = () => {
             )}
             {!search && (
               <div>
-                {!currentPosts[0] && <Loading></Loading>}
-                {currentPosts[0] &&
-                  currentPosts?.map((blog) => (
+                {!allBlogs[0] && <Loading></Loading>}
+                {allBlogs[0] &&
+                  allBlogs?.map((blog) => (
                     <div
                       key={blog?._id}
                       className="mb-8 grid grid-cols-3 gap-4"

@@ -16,7 +16,7 @@ const Navbar = () => {
       .catch((error) => {
         console.log(error.message);
       });
-  }, [user?.email, router.pathname]);
+  }, [user?.email]);
   const { systemTheme, theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
@@ -303,7 +303,7 @@ const Navbar = () => {
               <Link href="/dashboard">
                 <a
                   onClick={closeNav}
-                  className="whitespace-no-wrap block bg-gray-200 py-2 px-4 hover:bg-gray-400"
+                  className="text-black font-medium text-lg font-serif dark:text-white px-5 py-3 rounded-md hover:bg-white/5"
                 >
                   Dashboard
                 </a>
