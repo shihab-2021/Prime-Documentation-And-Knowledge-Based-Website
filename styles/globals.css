@@ -91,6 +91,9 @@ a {
 .jodit-status-bar-link {
   display: none;
 }
+.jodit-ui-input__input, .jodit-input, .jodit{
+  color: black !important;
+}
 /* Text-editor css end */
 
 .bshadow {
