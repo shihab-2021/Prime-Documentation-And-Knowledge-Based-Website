@@ -17,8 +17,6 @@ const Navbar = () => {
         console.log(error.message);
       });
   }, [user?.email, router.pathname]);
-  console.log(data);
-  // console.log(user);
   const { systemTheme, theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
@@ -204,7 +202,6 @@ const Navbar = () => {
                   </Link>
                 </div>
               )}
-
               <div className=" text-black dark:text-white flex justify-center items-center">
                 {renderThemeChange()}
               </div>
@@ -213,10 +210,6 @@ const Navbar = () => {
             {!navOpen && (
               <button
                 id="openBtn"
-                // onClick={() => {
-                //   let mobileMenu = document.getElementById("mobile-menu");
-                //   mobileMenu.classList.toggle("hidden");
-                // }}
                 onClick={openNav}
                 data-mobile-menu
                 className="text-gray-400 py-3 px-2 hover:text-gray-200 block md:hidden"
@@ -266,10 +259,107 @@ const Navbar = () => {
                 </svg>
               </button>
             )}
-            <a href="#">About</a>
-            <a href="#">Services</a>
-            <a href="#">Clients</a>
-            <a href="#">Contact</a>
+            <Link href="/">
+              <a
+                onClick={closeNav}
+                className="text-black font-medium text-lg font-serif dark:text-white px-5 py-3 rounded-md hover:bg-white/5"
+              >
+                Home
+              </a>
+            </Link>
+            <Link href="/blogs">
+              <a
+                onClick={closeNav}
+                className="text-black font-medium text-lg font-serif dark:text-white px-5 py-3 rounded-md hover:bg-white/5"
+              >
+                Blogs
+              </a>
+            </Link>
+            <Link href="/ask">
+              <a
+                onClick={closeNav}
+                className="text-black font-medium text-lg font-serif dark:text-white px-5 py-3 rounded-md hover:bg-white/5"
+              >
+                Ask
+              </a>
+            </Link>
+            <Link href="/about">
+              <a
+                onClick={closeNav}
+                className="text-black font-medium text-lg font-serif dark:text-white px-5 py-3 rounded-md hover:bg-white/5"
+              >
+                About
+              </a>
+            </Link>
+            <Link href="/contact">
+              <a
+                onClick={closeNav}
+                className="text-black font-medium text-lg font-serif dark:text-white px-5 py-3 rounded-md hover:bg-white/5"
+              >
+                Contact
+              </a>
+            </Link>
+            {data?.role === "admin" && (
+              <Link href="/dashboard">
+                <a
+                  onClick={closeNav}
+                  className="whitespace-no-wrap block bg-gray-200 py-2 px-4 hover:bg-gray-400"
+                >
+                  Dashboard
+                </a>
+              </Link>
+            )}
+            <Link href="/blogUpload">
+              <a
+                onClick={closeNav}
+                className="text-black font-medium text-lg font-serif dark:text-white px-5 py-3 rounded-md hover:bg-white/5"
+              >
+                Upload Blog
+              </a>
+            </Link>
+            {user?.email ? (
+              <div className="group relative inline-block">
+                <Link href={`/blogs/blogger/${data?._id}`}>
+                  <a
+                    onClick={closeNav}
+                    className="text-black font-medium text-lg font-serif dark:text-white px-5 py-3 rounded-md hover:bg-white/5"
+                  >
+                    <img
+                      style={{ height: "40px", width: "40px" }}
+                      className="link-item inline-flex items-center rounded-full object-cover"
+                      src={
+                        data?.image
+                          ? data?.image
+                          : `https://i.ibb.co/DMYmT3x/Generic-Profile.jpg`
+                      }
+                      alt=""
+                    />{" "}
+                    My Profile
+                  </a>
+                </Link>
+                <a
+                  onClick={() => {
+                    logout();
+                    closeNav();
+                  }}
+                  className="text-black font-medium text-lg font-serif dark:text-white px-5 py-3 rounded-md hover:bg-white/5"
+                >
+                  Logout
+                </a>
+              </div>
+            ) : (
+              <Link href="/login">
+                <a
+                  onClick={closeNav}
+                  className="text-black font-medium text-lg font-serif dark:text-white px-5 py-3 rounded-md hover:bg-white/5"
+                >
+                  Login
+                </a>
+              </Link>
+            )}
+            <div className="text-white flex px-7 py-3 justify-left  items-center">
+              {renderThemeChange()}
+            </div>
           </div>
         </nav>
       </div>

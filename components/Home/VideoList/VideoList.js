@@ -14,14 +14,11 @@ const VideoList = () => {
       firstItem?.comment?.length - secondItem?.comment?.length
   );
   allBlogs?.reverse();
-  console.log(allBlogs);
   const videos = allBlogs?.filter((td) => td?.video !== "");
   const video = allBlogs?.find((td) => td?.video !== "");
-  console.log(video?.video);
 
   //here default video
   const [videoList, setVideoList] = useState(video);
-  console.log(videoList);
 
   const handleVideo = (e) => {
     setVideoList(e);

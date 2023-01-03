@@ -13,7 +13,6 @@ const BloggerMain = () => {
       fetch(`https://prime-api-5jzf.onrender.com/blogger/${id}`)
         .then((res) => res.json())
         .then((data) => setData(data))
-        .then((data) => console.log(data))
         .catch((error) => {
           console.log(error.message);
         });
@@ -21,7 +20,6 @@ const BloggerMain = () => {
       router.replace("/");
     }
   }, [id]);
-  console.log(data);
   return (
     <div>
       <BloggerHeroSection></BloggerHeroSection>

@@ -27,7 +27,6 @@ const BloggerInfo = (props) => {
     const match = data?.following?.find((followerInfo) => {
       return props?.data?.email === followerInfo?.email;
     });
-    console.log(props?.data?.email);
     if (match?.email) setIsMatched(true);
   }, [data?.email, data?.following]);
 
@@ -55,10 +54,8 @@ const BloggerInfo = (props) => {
     );
   });
   dataSearch?.reverse();
-  console.log(dataSearch);
   const handleDeleteBlog = (id) => {
     const proceed = window.confirm("Are you sure, you want to delete?", id);
-    console.log(id);
     if (proceed) {
       const url = `https://prime-api-5jzf.onrender.com/delete-blog/${id}`;
       fetch(url, {
@@ -67,7 +64,6 @@ const BloggerInfo = (props) => {
         .then((res) => res.json())
         .then((data) => {
           if (data.deletedCount > 0) {
-            console.log(id);
             alert("Deleted Successfully!");
             const remainingBlogs = blogs.filter((blog) => blog._id !== id);
             setBlogs(remainingBlogs);
@@ -101,7 +97,6 @@ const BloggerInfo = (props) => {
     }
   };
   const date = new Date(props?.data?.birthDate)?.toLocaleDateString();
-  console.log(date);
   return (
     <div>
       <div className="container px-4 mx-auto">
@@ -153,7 +148,15 @@ const BloggerInfo = (props) => {
                       )}
                     </div>
                   )}
-                  {props?.data?.email === data?.email && (<div className="w-100 flex justify-center"><Link href='/giveInfo'><a className="border border-teal-400 p-2 my-5 rounded">Update Profile</a></Link></div>)}
+                  {props?.data?.email === data?.email && (
+                    <div className="w-100 flex justify-center">
+                      <Link href="/giveInfo">
+                        <a className="border border-teal-400 p-2 my-5 rounded">
+                          Update Profile
+                        </a>
+                      </Link>
+                    </div>
+                  )}
                   <ul className="mt-3 divide-y rounded bg-gray-100 py-2 px-3 text-gray-600 shadow-sm dark:bg-DarkGray dark:text-slate-300">
                     <li className="flex items-center py-3">
                       <span>Member since</span>
@@ -191,15 +194,17 @@ const BloggerInfo = (props) => {
                         Not followed by anyone!
                       </h3>
                     )}
-                    {props?.data?.followers.map((follower) => (
-                      <div key={follower.id} className="my-2 flex ">
+                    {props?.data?.followers?.map((follower) => (
+                      <div key={follower?.id} className="my-2 flex ">
                         <img
                           className="h-16 w-16 rounded-full"
                           src={follower.image}
                           alt=""
                         />
                         <p className="w-full self-center pl-2 ">
-                          {follower.name}
+                          <Link href={`/blogs/blogger/${follower?.id}`}>
+                            <a className="hover:underline">{follower?.name}</a>
+                          </Link>
                         </p>
                       </div>
                     ))}
@@ -235,15 +240,17 @@ const BloggerInfo = (props) => {
                         Not following anyone!
                       </h3>
                     )}
-                    {props?.data?.following.map((follower) => (
-                      <div key={follower.id} className="my-2 flex ">
+                    {props?.data?.following?.map((follower) => (
+                      <div key={follower?.id} className="my-2 flex ">
                         <img
                           className="h-16 w-16 rounded-full"
-                          src={follower.image}
+                          src={follower?.image}
                           alt=""
                         />
                         <p className="w-full self-center pl-2 ">
-                          {follower.name}
+                          <Link href={`/blogs/blogger/${follower?.id}`}>
+                            <a className="hover:underline">{follower?.name}</a>
+                          </Link>
                         </p>
                       </div>
                     ))}
@@ -322,10 +329,14 @@ const BloggerInfo = (props) => {
                   </div>
                 </div>
                 {/* <!-- End of about section --> */}
-
+                {/* <!-- Blogs --> */}
                 <div className="my-4">
                   <h3 className="my-4 pt-5">Blogs</h3>
-                  {dataSearch && !dataSearch[0] && <p className="text-center text-xl">No blog has not posted yet!</p> }
+                  {dataSearch && !dataSearch[0] && (
+                    <p className="text-center text-xl">
+                      No blog has not posted yet!
+                    </p>
+                  )}
                   <div className="col-span-12 lg:col-span-8">
                     {dataSearch?.map((blog) => (
                       <div
@@ -390,9 +401,7 @@ const BloggerInfo = (props) => {
                     ))}
                   </div>
                 </div>
-
                 {/* <!-- Blogs --> */}
-
                 {/* <!-- End of profile tab --> */}
               </div>
               {/* <!-- Right Side End --> */}

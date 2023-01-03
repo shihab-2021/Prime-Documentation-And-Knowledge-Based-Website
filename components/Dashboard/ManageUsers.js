@@ -16,7 +16,6 @@ const ManageUsers = () => {
   }, []);
   const handleDeleteUser = (id) => {
     const proceed = window.confirm("Are you sure, you want to delete?", id);
-    console.log(id);
     if (proceed) {
       const url = `https://prime-api-5jzf.onrender.com/delete-user/${id}`;
       fetch(url, {
@@ -25,7 +24,6 @@ const ManageUsers = () => {
         .then((res) => res.json())
         .then((data) => {
           if (data.deletedCount > 0) {
-            console.log(id);
             alert("Deleted Successfully!");
             const remainingUsers = users.filter((user) => user._id !== id);
             setUsers(remainingUsers);

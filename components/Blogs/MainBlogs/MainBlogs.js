@@ -58,7 +58,6 @@ const MainBlogs = () => {
   });
   dataSearch?.reverse();
   // searching code end
-  console.log(dataSearch);
   return (
     <div>
       <BlogsHeroSection></BlogsHeroSection>

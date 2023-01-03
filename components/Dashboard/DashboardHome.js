@@ -49,7 +49,6 @@ const DashboardHome = () => {
   }, [showMore1, !reports]);
   const handleDeleteBlog = (id) => {
     const proceed = window.confirm("Are you sure, you want to delete?", id);
-    console.log(id);
     if (proceed) {
       const url = `https://prime-api-5jzf.onrender.com/delete-message/${id}`;
       fetch(url, {
@@ -58,7 +57,6 @@ const DashboardHome = () => {
         .then((res) => res.json())
         .then((data) => {
           if (data.deletedCount > 0) {
-            console.log(id);
             alert("Deleted Successfully!");
             const remainingBlogs = messages.filter(
               (message) => message._id !== id
@@ -90,7 +88,6 @@ const DashboardHome = () => {
         } else {
           alert("Please enter a valid email!");
         }
-        console.log(data);
       });
 
     e.preventDefault();

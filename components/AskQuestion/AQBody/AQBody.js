@@ -46,7 +46,6 @@ const AQBody = () => {
   };
 
   const handleUpload = () => {
-    console.log(title, categoryName, value, tags, currentTime, date);
     if (!title || !categoryName || !value || !tags[0]) {
       alert(
         "Title, Category selection, Documentation, Tags giving are required. If any of those missing you can not submit you blog or documentation. Please enter the data if anyone is missing. Thank you."
@@ -63,8 +62,6 @@ const AQBody = () => {
       blogger: data,
       answers: [],
     };
-    console.log(uploadData);
-    // props.handleUpload(uploadData);
     fetch("https://prime-api-5jzf.onrender.com/questions", {
       method: "POST",
       headers: {

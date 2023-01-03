@@ -4,44 +4,31 @@ import { useRouter } from "next/router";
 import React from "react";
 import { AiFillGithub, AiOutlineGoogle } from "react-icons/ai";
 import useAuth from "../../hook/useAuth";
-// import useFirebase from "../../hook/useFirebase";
-// // import useFirebase from "../../firebase/useFirebase";
 
 const LoginMain = () => {
   // nextjs hook for routing
-  const router = useRouter()
-  // console.log(router);
+  const router = useRouter();
 
   const { logIn, signInWithGoogle } = useAuth();
-  // const { logIn } = useContext(AuthContext)
-    // const [loginUserEmail,setLoginUserEmail]= useState('');
 
-    const handleSubmit = event => {
-      event.preventDefault();
-      const form = event.target;
-      const email = form.email.value;
-      const password = form.password.value;
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
 
-      logIn(email, password)
-          .then(result => {
-              const user = result.user;
-              alert('log in successfull');
-
-              
-         
-
-
-              form.reset();
-
-
-          })
-          .catch(err => {
-              console.error(err)
-              alert('error please try again')
-              form.reset();
-
-          })
-        }
+    logIn(email, password)
+      .then((result) => {
+        const user = result.user;
+        alert("Logged in successful.");
+        form.reset();
+      })
+      .catch((err) => {
+        console.error(err);
+        alert("error please try again");
+        form.reset();
+      });
+  };
   return (
     <div>
       <div className="pt-40 pb-24  container mx-auto px-4 grid grid-cols-1 md:grid-cols-2">
