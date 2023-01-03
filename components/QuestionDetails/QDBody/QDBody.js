@@ -80,7 +80,6 @@ const QDBody = (props) => {
       date: date,
       answers: value,
     };
-    console.log(payload);
     submitAnswer(payload);
     reset();
     setValue("");

@@ -111,13 +111,11 @@ const MainDetails = (props) => {
     });
     if (match?.reportReason) setIsMatchedReport(true);
   }, [blog?.reports, data?.email]);
-  console.log(isMatchedReport);
 
   // report reason state here
   const [reportReason, setReportReason] = useState("");
   // report blog handler here
   const handleReport = () => {
-    console.log(reportReason);
     if (user?.email) {
       if (!reportReason) {
         alert("You have to select a reason for reporting !");
@@ -141,7 +139,6 @@ const MainDetails = (props) => {
       bloggerId: blogger?._id,
       userId: data?._id,
     };
-    console.log(payload);
     if (data) {
       fetch(`https://prime-api-5jzf.onrender.com/user`, {
         method: "PUT",
@@ -421,7 +418,7 @@ const MainDetails = (props) => {
               )}
               {otherPosts && !otherPosts[0] && (
                 <h4 className="mb-2 font-bold">
-                  No Other Bloggers Posts Available!
+                  Other posts are not available!
                 </h4>
               )}
               <hr className="bg-white border-slate-300" />

@@ -64,7 +64,6 @@ const ProfileEdit = (props) => {
     data.append("file", files[0]);
     data.append("upload_preset", "ml_default");
     setImageLoading(true);
-    console.log(e.target.files);
 
     const res = await fetch(
       "https://api.cloudinary.com/v1_1/dvszolotz/image/upload",
@@ -74,7 +73,6 @@ const ProfileEdit = (props) => {
       }
     );
     const file = await res.json();
-    // console.log(file.public_id);
     const field = e.target.name;
     const value = file.secure_url;
     setImage(file.secure_url);
@@ -233,8 +231,6 @@ const ProfileEdit = (props) => {
               selected={startDate}
               onChange={(date, Date) => {
                 setStartDate(date);
-                console.log(Date);
-                console.log(date);
               }}
             />
           </div>

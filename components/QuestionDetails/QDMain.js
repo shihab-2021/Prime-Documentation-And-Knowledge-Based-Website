@@ -13,8 +13,6 @@ const QDMain = () => {
       fetch(`https://prime-api-5jzf.onrender.com/questions/${id}`)
         .then((res) => res.json())
         .then((data) => setData(data))
-        .then(() => console.log(id))
-        .then(() => console.log(data))
         .catch((error) => {
           console.log(error.message);
         });
@@ -42,15 +40,12 @@ const QDMain = () => {
         .then((res) => res.json())
         .then((data) => setData(data))
         .then(() => setAnswered(true))
-        .then((data) => console.log(data))
         .catch((error) => {
           console.log(error.message);
         });
     } else {
       router.replace("/");
     }
-    // reset();
-    console.log(payload);
   };
   return (
     <div>

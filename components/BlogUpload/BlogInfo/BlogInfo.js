@@ -54,10 +54,8 @@ const BlogInfo = (props) => {
   };
 
   const videoFileDrop = async (e) => {
-    console.log("videoFileDrop");
     e.preventDefault();
     const files = e.dataTransfer.files;
-    console.log(files);
 
     const data = new FormData();
     data.append("file", files[0]);
@@ -72,10 +70,7 @@ const BlogInfo = (props) => {
       }
     );
     const file = await res.json();
-
     setVideo(file.secure_url);
-    // props.videoLink(file.secure_url);
-    console.log(video);
     setVideoLoading(false);
   };
 
@@ -94,17 +89,13 @@ const BlogInfo = (props) => {
       }
     );
     const file = await res.json();
-    console.log(file);
     setVideo(file.secure_url);
-    // props.videoLink(file.secure_url);
-    console.log(video);
     setVideoLoading(false);
   };
 
   const imageFileDrop = async (e) => {
     e.preventDefault();
     const files = e.dataTransfer.files;
-    console.log(files);
 
     const data = new FormData();
     data.append("file", files[0]);
@@ -138,7 +129,6 @@ const BlogInfo = (props) => {
     data.append("file", files[0]);
     data.append("upload_preset", "ml_default");
     setImageLoading(true);
-    console.log(e.target.files);
 
     const res = await fetch(
       "https://api.cloudinary.com/v1_1/dvszolotz/image/upload",
@@ -148,25 +138,17 @@ const BlogInfo = (props) => {
       }
     );
     const file = await res.json();
-    // console.log(file.public_id);
     const field = e.target.name;
     const value = file.secure_url;
     const newBlogData = { ...blogData };
     newBlogData[field] = value;
     setBlogData(newBlogData);
-    console.log(blogData);
-
-    console.log("something");
     setImage(file.secure_url);
-    // setImage(files[0])
-    // props.imgLink(file.secure_url);
     setImageLoading(false);
   };
 
   const allTags = (e) => {
     setTags(e);
-    // console.log(...e);
-    // console.log(tags);
   };
 
   let time = new Date();

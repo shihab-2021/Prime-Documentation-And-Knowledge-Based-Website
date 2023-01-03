@@ -53,15 +53,6 @@ const fakeData = [
 ];
 
 const CommunitiesCard = () => {
-  // react redux hook here
-  //   const dispatch = useDispatch();
-
-  // getting all blogs from redux here
-  //   const blogs = useSelector((state) => state?.reducers?.blogs?.blogs);
-
-  // const categoryWiseBlogs = blogs.filter(
-  //   (td) => td?.category === event.target.value
-  // )
   const [blogs, setBlogs] = useState([]);
   useEffect(() => {
     fetch("https://prime-api-5jzf.onrender.com/blogs")

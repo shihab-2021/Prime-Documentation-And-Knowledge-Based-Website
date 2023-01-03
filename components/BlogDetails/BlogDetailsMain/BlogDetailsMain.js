@@ -37,9 +37,7 @@ const BlogDetailsMain = () => {
         .then((result) => {})
         .catch((e) => console.log("Something went wrong !"));
       setComment(true);
-      console.log(comment);
       alert("Comment added!");
-      console.log("loading....");
       if (id) {
         fetch(`https://prime-api-5jzf.onrender.com/blog/${id}`)
           .then((res) => res.json())
@@ -71,7 +69,6 @@ const BlogDetailsMain = () => {
         .then((result) => {
           if (result?.acknowledged) {
             alert("Reported successfully");
-            console.log(result);
           }
         })
         .catch((e) => console.log(e.message));

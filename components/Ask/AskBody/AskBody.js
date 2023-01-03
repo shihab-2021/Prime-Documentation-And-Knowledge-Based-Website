@@ -34,7 +34,6 @@ const AskBody = () => {
     setCategory(false);
     setSearch(true);
     setFilter(event.target.value);
-    console.log(event.target.value);
   };
   let dataSearch = questions?.filter((item) => {
     return Object.keys(item).some((key) =>

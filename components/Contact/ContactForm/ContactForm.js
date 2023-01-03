@@ -1,4 +1,5 @@
 import React from "react";
+import useAuth from "../../../hook/useAuth";
 
 const ContactForm = () => {
   const handleSubmit = (event) => {
@@ -27,7 +28,6 @@ const ContactForm = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.acknowledged) {
           alert("Sent successfully");
           form.reset();
@@ -35,6 +35,7 @@ const ContactForm = () => {
       })
       .catch((error) => console.error(error));
   };
+  const { user } = useAuth();
   return (
     <div>
       <div className="container mx-auto px-4">
@@ -52,7 +53,7 @@ const ContactForm = () => {
               onSubmit={handleSubmit}
               className="grid grid-cols-1 lg:grid-cols-2 gap-3"
             >
-              <div>
+              <div className="col-span-2 lg:col-span-1">
                 <label>
                   First Name
                   <input
@@ -60,11 +61,11 @@ const ContactForm = () => {
                     type="text"
                     required
                     placeholder="Enter Your First name "
-                    className="block w-full border rounded mt-2 h-10 "
+                    className="block w-full border rounded mt-2 h-10 px-2"
                   />
                 </label>
               </div>
-              <div>
+              <div className="col-span-2 lg:col-span-1">
                 <label>
                   Last Name
                   <input
@@ -72,23 +73,27 @@ const ContactForm = () => {
                     type="text"
                     required
                     placeholder="Enter Your Last Name"
-                    className="block w-full border rounded mt-2 h-10"
+                    className="block w-full border rounded mt-2 h-10 px-2"
                   />
                 </label>
               </div>
-              <div>
+              <div className="col-span-2 lg:col-span-1">
                 <label>
                   Email
                   <input
+                    value={user?.email}
                     name="email"
                     type="email"
                     required
                     placeholder="Enter Your Email"
-                    className="block w-full border rounded mt-2 h-10"
+                    className="block w-full border rounded mt-2 h-10 px-2"
                   />
                 </label>
+                <p className=" text-xs text-red-400">
+                  We are taking your email by default
+                </p>
               </div>
-              <div>
+              <div className="col-span-2 lg:col-span-1">
                 <label>
                   Subject
                   <input
@@ -96,7 +101,7 @@ const ContactForm = () => {
                     type="text"
                     required
                     placeholder="Enter Your Subject"
-                    className="block w-full border rounded mt-2 h-10"
+                    className="block w-full border rounded mt-2 h-10 px-2"
                   />
                 </label>
               </div>
@@ -106,9 +111,10 @@ const ContactForm = () => {
                   <textarea
                     name="message"
                     type="text"
+                    rows="4"
                     required
                     placeholder="Enter Your Message"
-                    className="block w-full border rounded mt-2"
+                    className="block w-full border rounded mt-2 px-2"
                   ></textarea>
                 </label>
               </div>
