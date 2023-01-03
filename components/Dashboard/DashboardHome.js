@@ -37,7 +37,7 @@ const DashboardHome = () => {
   const reports = blogs?.filter((td) => td?.reports?.length !== 0);
   const [showMore1, setShowMore1] = useState(false);
   const [showMore2, setShowMore2] = useState(false);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState();
   const [data1, setData1] = useState([]);
 
   useEffect(() => {
@@ -47,7 +47,7 @@ const DashboardHome = () => {
       setData(reports?.slice(0, 3));
     }
   }, [showMore1, !reports]);
-  const handleDeleteBlog = (id) => {
+  const handleDeleteMessage = (id) => {
     const proceed = window.confirm("Are you sure, you want to delete?", id);
     if (proceed) {
       const url = `https://prime-api-5jzf.onrender.com/delete-message/${id}`;
@@ -62,6 +62,23 @@ const DashboardHome = () => {
               (message) => message._id !== id
             );
             setMessages(remainingBlogs);
+          }
+        });
+    }
+  };
+  const handleDeleteBlog = (id) => {
+    const proceed = window.confirm("Are you sure, you want to delete?", id);
+    if (proceed) {
+      const url = `https://prime-api-5jzf.onrender.com/delete-blog/${id}`;
+      fetch(url, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.deletedCount > 0) {
+            alert("Deleted Successfully!");
+            const remainingBlogs = reports?.filter((blog) => blog._id !== id);
+            setData(remainingBlogs);
           }
         });
     }
@@ -179,6 +196,15 @@ const DashboardHome = () => {
                     <p className="text-secondary flex items-center">
                       {item?.reports?.length} reports
                     </p>
+                    <div className=" pt-1">
+                      <button
+                        onClick={() => handleDeleteBlog(item?._id)}
+                        type="button"
+                        className="flex items-center text-red-700 border-red-700 border rounded p-1"
+                      >
+                        <MdOutlineDelete /> Delete
+                      </button>
+                    </div>
                   </span>
                 </div>
               </div>
@@ -204,7 +230,7 @@ const DashboardHome = () => {
           </div>
         </div>
         {/* reported blogs list end */}
-        {/* reported users list start */}
+        {/* users message list start */}
         <div>
           <h1 className="text-3xl pt-5 pb-3">Users Messages</h1>
           {/* grid system for the items here  */}
@@ -232,7 +258,7 @@ const DashboardHome = () => {
                   </div>
                   <div className="px-4 pt-3">
                     <button
-                      onClick={() => handleDeleteBlog(item?._id)}
+                      onClick={() => handleDeleteMessage(item?._id)}
                       type="button"
                       className="flex items-center text-red-700 border-red-700 border rounded p-1"
                     >
@@ -262,7 +288,7 @@ const DashboardHome = () => {
             </button>
           </div>
         </div>
-        {/* reported users list end */}
+        {/* users message list end */}
       </div>
     </div>
   );
