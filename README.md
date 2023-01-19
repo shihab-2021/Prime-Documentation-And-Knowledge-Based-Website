@@ -1,34 +1,40 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h2 align="center"> Prime </h2>
+<p align="center"> Documentation and Blogging Site </p>
+<h4> The goal of the project is to give facilities to post documentation or blog and give support in making different types of documentation or blog. It allows a user to see anyone’s blog without any restriction. The users can post any kind of blog, document including video. There will be a powerful feature like users can write comments, give likes, or upvote to others' blogs or documentation. Also features like managing their profile will be available for users where they can update their username, password, etc. We also want to give the whole site a theme-changing option. This means there will be interesting features like a dark mood and a bright mood also. 
+</h4>
 
-## Getting Started
+- Server Code : [Prime Server Repo](https://github.com/shihab-2021/Prime-Server-Side-Code)
 
-First, run the development server:
+- Client Code : [Prime Client Repo](https://github.com/shihab-2021/Prime-Documentation-And-Knowledge-Based-Website)
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+- Live Site : [Prime Live Site](https://prime-mocha.vercel.app/)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Documentation
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+- [Next Js Documentation](https://nextjs.org/docs)
+- [Redux Documentation ](https://redux-toolkit.js.org/introduction/getting-started)
+- [ Express Documentation ](https://expressjs.com/en/starter/installing.html)
+- [ Vercel Documentation ](https://nextjs.org/docs/deployment)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+# Features
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- A user can post blogs, documentation including video.
+- Users can write comments and give feedback to others' posts.
+- Users will have the option to manage their profiles as well.
+- Users also can search for documentation regarding any topic by searching by a keyword in the search bar.
+- Users can post questions and answer other users questions.
+- For better user experience we have light mode and dark mode.
 
-## Learn More
+# Used Technologies
 
-To learn more about Next.js, take a look at the following resources:
+Backend
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Language : Node.js
+- Framework : Express.js
+- Database : MongoDB
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Frontend
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Language : JavaScript
+- UI Framework : NEXT.js
+- UI Design Framework : Tailwind
