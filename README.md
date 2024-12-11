@@ -1,7 +1,8 @@
-<h2 align="center"> Prime </h2>
-<p align="center"> Documentation and Blogging Site </p>
-<h4> The goal of the project is to give facilities to post documentation or blog and give support in making different types of documentation or blog. It allows a user to see anyone’s blog without any restriction. The users can post any kind of blog, document including video. There will be a powerful feature like users can write comments, give likes, or upvote to others' blogs or documentation. Also features like managing their profile will be available for users where they can update their username, password, etc. We also want to give the whole site a theme-changing option. This means there will be interesting features like a dark mood and a bright mood also. 
-</h4>
+# Prime
+## Documentation and Blogging Site
+The goal of the project is to give facilities to post documentation or blog and give support in making different types of documentation or blog. It allows a user to see anyone’s blog without any restriction. The users can post any kind of blog, document including video. There will be a powerful feature like users can write comments, give likes, or upvote to others' blogs or documentation. Also features like managing their profile will be available for users where they can update their username, password, etc. We also want to give the whole site a theme-changing option. This means there will be interesting features like a dark mood and a bright mood also. 
+
+![Prime Preview](https://i.ibb.co.com/Kj8HBbm/download.png)
 
 - Server Code : [Prime Server Repo](https://github.com/shihab-2021/Prime-Server-Side-Code)
 
